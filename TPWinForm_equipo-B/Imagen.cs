@@ -12,5 +12,10 @@ namespace TPWinForm_equipo_B
         public int IdArticulo { get; set; }
         public string ImagenUrl { get; set; }
 
+        public override string ToString()
+        {
+            return ImagenUrl;
+        }
+
     }
 }

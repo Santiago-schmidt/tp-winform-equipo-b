@@ -21,5 +21,10 @@ namespace TPWinForm_equipo_B
         public List<Imagen> Imagenes { get; set; }
         public decimal Precio { get; set; }
 
+        public override string ToString()
+        {
+            return Descripcion;
+        }
+
     }
 }

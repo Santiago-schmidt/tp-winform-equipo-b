@@ -427,3 +427,6 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+ #Agregué el .sln local al .gitignore para evitar conflictos, ya que VS2019 no soporta .slnx
+ #Yo (marcos) tengo instalado el VS2019 que no soporta slnx, por eso esta linea en gitignore
+/TPWinForm_equipo-B/TPWinForm_equipo-B/TPWinForm_equipo-B.sln
