@@ -57,7 +57,9 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Imagen.cs" />
+    <Compile Include="IRepositorioArticulo.cs" />
     <Compile Include="IRepositorioCategoria.cs" />
+    <Compile Include="IRepositorioImagen.cs" />
     <Compile Include="IRepositorioMarca.cs" />
     <Compile Include="Marca.cs" />
     <Compile Include="MarcaRepositorio.cs" />
