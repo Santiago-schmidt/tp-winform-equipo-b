@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Articulo.cs" />
     <Compile Include="Categoria.cs" />
+    <Compile Include="CategoriaRepositorio.cs" />
     <Compile Include="Conexion.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -59,6 +60,7 @@
     <Compile Include="IRepositorioCategoria.cs" />
     <Compile Include="IRepositorioMarca.cs" />
     <Compile Include="Marca.cs" />
+    <Compile Include="MarcaRepositorio.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
