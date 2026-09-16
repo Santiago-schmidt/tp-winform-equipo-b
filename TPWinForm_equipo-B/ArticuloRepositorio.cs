@@ -45,7 +45,7 @@ namespace TPWinForm_equipo_B
 
             using (SqlConnection conexion = Conexion.ObtenerConexion())
             {
-                string consulta = ConsultaBase + "WHERE a.Eliminado = 0";
+                string consulta = ConsultaBase;
                 SqlCommand comando = new SqlCommand(consulta, conexion);
 
                 using (SqlDataReader lector = comando.ExecuteReader())
@@ -66,7 +66,7 @@ namespace TPWinForm_equipo_B
 
             using (SqlConnection conexion = Conexion.ObtenerConexion())
             {
-                string consulta = ConsultaBase + "WHERE a.Id = @Id AND a.Eliminado = 0";
+                string consulta = ConsultaBase + "WHERE a.Id = @Id";
                 SqlCommand comando = new SqlCommand(consulta, conexion);
                 comando.Parameters.AddWithValue("@Id", id);
 
@@ -86,8 +86,8 @@ namespace TPWinForm_equipo_B
         {
             using (SqlConnection conexion = Conexion.ObtenerConexion())
             {
-                string consulta = "INSERT INTO Articulos (Codigo, Nombre, Descripcion, Precio, IdMarca, IdCategoria, Eliminado) " +
-                                   "VALUES (@Codigo, @Nombre, @Descripcion, @Precio, @IdMarca, @IdCategoria, 0)";
+                string consulta = "INSERT INTO Articulos (Codigo, Nombre, Descripcion, Precio, IdMarca, IdCategoria) " +
+                                   "VALUES (@Codigo, @Nombre, @Descripcion, @Precio, @IdMarca, @IdCategoria)";
                 SqlCommand comando = new SqlCommand(consulta, conexion);
                 comando.Parameters.AddWithValue("@Codigo", articulo.Codigo);
                 comando.Parameters.AddWithValue("@Nombre", articulo.Nombre);
@@ -121,9 +121,10 @@ namespace TPWinForm_equipo_B
 
         public void EliminarLogico(int id)
         {
+            // La base real no tiene columna Eliminado, así que esto es una baja física.
             using (SqlConnection conexion = Conexion.ObtenerConexion())
             {
-                string consulta = "UPDATE Articulos SET Eliminado = 1 WHERE Id = @Id";
+                string consulta = "DELETE FROM Articulos WHERE Id = @Id";
                 SqlCommand comando = new SqlCommand(consulta, conexion);
                 comando.Parameters.AddWithValue("@Id", id);
 

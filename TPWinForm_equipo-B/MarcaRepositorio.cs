@@ -15,7 +15,7 @@ namespace TPWinForm_equipo_B
 
             using (SqlConnection conexion = Conexion.ObtenerConexion())
             {
-                string consulta = "SELECT Id, Descripcion FROM Marcas WHERE Eliminado = 0";
+                string consulta = "SELECT Id, Descripcion FROM Marcas";
                 SqlCommand comando = new SqlCommand(consulta, conexion);
 
                 using (SqlDataReader lector = comando.ExecuteReader())
@@ -40,7 +40,7 @@ namespace TPWinForm_equipo_B
 
             using (SqlConnection conexion = Conexion.ObtenerConexion())
             {
-                string consulta = "SELECT Id, Descripcion FROM Marcas WHERE Id = @Id AND Eliminado = 0";
+                string consulta = "SELECT Id, Descripcion FROM Marcas WHERE Id = @Id";
                 SqlCommand comando = new SqlCommand(consulta, conexion);
                 comando.Parameters.AddWithValue("@Id", id);
 
@@ -64,7 +64,7 @@ namespace TPWinForm_equipo_B
         {
             using (SqlConnection conexion = Conexion.ObtenerConexion())
             {
-                string consulta = "INSERT INTO Marcas (Descripcion, Eliminado) VALUES (@Descripcion, 0)";
+                string consulta = "INSERT INTO Marcas (Descripcion) VALUES (@Descripcion)";
                 SqlCommand comando = new SqlCommand(consulta, conexion);
                 comando.Parameters.AddWithValue("@Descripcion", marca.Descripcion);
 
@@ -87,9 +87,10 @@ namespace TPWinForm_equipo_B
 
         public void EliminarLogico(int id)
         {
+            // La base real no tiene columna Eliminado, así que esto es una baja física.
             using (SqlConnection conexion = Conexion.ObtenerConexion())
             {
-                string consulta = "UPDATE Marcas SET Eliminado = 1 WHERE Id = @Id";
+                string consulta = "DELETE FROM Marcas WHERE Id = @Id";
                 SqlCommand comando = new SqlCommand(consulta, conexion);
                 comando.Parameters.AddWithValue("@Id", id);
 

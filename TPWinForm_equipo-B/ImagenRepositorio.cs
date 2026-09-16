@@ -15,7 +15,7 @@ namespace TPWinForm_equipo_B
 
             using (SqlConnection conexion = Conexion.ObtenerConexion())
             {
-                string consulta = "SELECT Id, IdArticulo, Url FROM Imagenes WHERE Eliminado = 0";
+                string consulta = "SELECT Id, IdArticulo, ImagenUrl FROM Imagenes";
                 SqlCommand comando = new SqlCommand(consulta, conexion);
 
                 using (SqlDataReader lector = comando.ExecuteReader())
@@ -26,7 +26,7 @@ namespace TPWinForm_equipo_B
                         {
                             Id = (int)lector["Id"],
                             IdArticulo = (int)lector["IdArticulo"],
-                            ImagenUrl = (string)lector["Url"]
+                            ImagenUrl = (string)lector["ImagenUrl"]
                         });
                     }
                 }
@@ -41,7 +41,7 @@ namespace TPWinForm_equipo_B
 
             using (SqlConnection conexion = Conexion.ObtenerConexion())
             {
-                string consulta = "SELECT Id, IdArticulo, Url FROM Imagenes WHERE Id = @Id AND Eliminado = 0";
+                string consulta = "SELECT Id, IdArticulo, ImagenUrl FROM Imagenes WHERE Id = @Id";
                 SqlCommand comando = new SqlCommand(consulta, conexion);
                 comando.Parameters.AddWithValue("@Id", id);
 
@@ -53,7 +53,7 @@ namespace TPWinForm_equipo_B
                         {
                             Id = (int)lector["Id"],
                             IdArticulo = (int)lector["IdArticulo"],
-                            ImagenUrl = (string)lector["Url"]
+                            ImagenUrl = (string)lector["ImagenUrl"]
                         };
                     }
                 }
@@ -66,10 +66,10 @@ namespace TPWinForm_equipo_B
         {
             using (SqlConnection conexion = Conexion.ObtenerConexion())
             {
-                string consulta = "INSERT INTO Imagenes (IdArticulo, Url, EsPrincipal, Eliminado) VALUES (@IdArticulo, @Url, 0, 0)";
+                string consulta = "INSERT INTO Imagenes (IdArticulo, ImagenUrl) VALUES (@IdArticulo, @ImagenUrl)";
                 SqlCommand comando = new SqlCommand(consulta, conexion);
                 comando.Parameters.AddWithValue("@IdArticulo", imagen.IdArticulo);
-                comando.Parameters.AddWithValue("@Url", imagen.ImagenUrl);
+                comando.Parameters.AddWithValue("@ImagenUrl", imagen.ImagenUrl);
 
                 comando.ExecuteNonQuery();
             }
@@ -79,10 +79,10 @@ namespace TPWinForm_equipo_B
         {
             using (SqlConnection conexion = Conexion.ObtenerConexion())
             {
-                string consulta = "UPDATE Imagenes SET IdArticulo = @IdArticulo, Url = @Url WHERE Id = @Id";
+                string consulta = "UPDATE Imagenes SET IdArticulo = @IdArticulo, ImagenUrl = @ImagenUrl WHERE Id = @Id";
                 SqlCommand comando = new SqlCommand(consulta, conexion);
                 comando.Parameters.AddWithValue("@IdArticulo", imagen.IdArticulo);
-                comando.Parameters.AddWithValue("@Url", imagen.ImagenUrl);
+                comando.Parameters.AddWithValue("@ImagenUrl", imagen.ImagenUrl);
                 comando.Parameters.AddWithValue("@Id", imagen.Id);
 
                 comando.ExecuteNonQuery();
@@ -91,9 +91,10 @@ namespace TPWinForm_equipo_B
 
         public void EliminarLogico(int id)
         {
+            // La base real no tiene columna Eliminado, así que esto es una baja física.
             using (SqlConnection conexion = Conexion.ObtenerConexion())
             {
-                string consulta = "UPDATE Imagenes SET Eliminado = 1 WHERE Id = @Id";
+                string consulta = "DELETE FROM Imagenes WHERE Id = @Id";
                 SqlCommand comando = new SqlCommand(consulta, conexion);
                 comando.Parameters.AddWithValue("@Id", id);
 
