@@ -1,134 +1,178 @@
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TPWinForm_equipo_B
 {
-    internal sealed class ArticuloRepositorio : IRepositorioArticulo
+    public class ArticuloRepositorio
     {
-        private const string ConsultaBase =
-            "SELECT a.Id, a.Codigo, a.Nombre, a.Descripcion, a.Precio, " +
-            "m.Id AS IdMarca, m.Descripcion AS DescripcionMarca, " +
-            "c.Id AS IdCategoria, c.Descripcion AS DescripcionCategoria " +
-            "FROM Articulos a " +
-            "INNER JOIN Marcas m ON m.Id = a.IdMarca " +
-            "INNER JOIN Categorias c ON c.Id = a.IdCategoria ";
-
-        private Articulo LeerArticulo(SqlDataReader lector)
-        {
-            return new Articulo
-            {
-                Id = (int)lector["Id"],
-                Codigo = (string)lector["Codigo"],
-                Nombre = (string)lector["Nombre"],
-                Descripcion = lector["Descripcion"] as string,
-                Precio = (decimal)lector["Precio"],
-                Marca = new Marca
-                {
-                    Id = (int)lector["IdMarca"],
-                    Descripcion = (string)lector["DescripcionMarca"]
-                },
-                Categoria = new Categoria
-                {
-                    Id = (int)lector["IdCategoria"],
-                    Descripcion = (string)lector["DescripcionCategoria"]
-                }
-            };
-        }
-
         public List<Articulo> Listar()
         {
             List<Articulo> articulos = new List<Articulo>();
+            AccesoDatos datos = new AccesoDatos();
 
-            using (SqlConnection conexion = Conexion.ObtenerConexion())
+            try
             {
-                string consulta = ConsultaBase;
-                SqlCommand comando = new SqlCommand(consulta, conexion);
+                datos.setearConsulta("SELECT a.Id, a.Codigo, a.Nombre, a.Descripcion, a.Precio, m.Id AS IdMarca, m.Descripcion AS DescripcionMarca, c.Id AS IdCategoria, c.Descripcion AS DescripcionCategoria FROM Articulos a LEFT JOIN Marcas m ON m.Id = a.IdMarca LEFT JOIN Categorias c ON c.Id = a.IdCategoria");
+                datos.ejecutarLectura();
 
-                using (SqlDataReader lector = comando.ExecuteReader())
+                while (datos.Lector.Read())
                 {
-                    while (lector.Read())
-                    {
-                        articulos.Add(LeerArticulo(lector));
-                    }
-                }
-            }
+                    Articulo aux = new Articulo();
+                    aux.Id = (int)datos.Lector["Id"];
+                    aux.Codigo = datos.Lector["Codigo"] is DBNull ? string.Empty : (string)datos.Lector["Codigo"];
+                    aux.Nombre = datos.Lector["Nombre"] is DBNull ? string.Empty : (string)datos.Lector["Nombre"];
 
-            return articulos;
+                    if (!(datos.Lector["Descripcion"] is DBNull))
+                        aux.Descripcion = (string)datos.Lector["Descripcion"];
+
+                    aux.Precio = datos.Lector["Precio"] is DBNull ? 0 : (decimal)datos.Lector["Precio"];
+
+                    aux.Marca = new Marca();
+                    if (!(datos.Lector["IdMarca"] is DBNull))
+                    {
+                        aux.Marca.Id = (int)datos.Lector["IdMarca"];
+                        aux.Marca.Descripcion = (string)datos.Lector["DescripcionMarca"];
+                    }
+
+                    aux.Categoria = new Categoria();
+                    if (!(datos.Lector["IdCategoria"] is DBNull))
+                    {
+                        aux.Categoria.Id = (int)datos.Lector["IdCategoria"];
+                        aux.Categoria.Descripcion = (string)datos.Lector["DescripcionCategoria"];
+                    }
+
+                    articulos.Add(aux);
+                }
+
+                return articulos;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
 
         public Articulo ObtenerPorId(int id)
         {
             Articulo articulo = null;
+            AccesoDatos datos = new AccesoDatos();
 
-            using (SqlConnection conexion = Conexion.ObtenerConexion())
+            try
             {
-                string consulta = ConsultaBase + "WHERE a.Id = @Id";
-                SqlCommand comando = new SqlCommand(consulta, conexion);
-                comando.Parameters.AddWithValue("@Id", id);
+                datos.setearConsulta("SELECT a.Id, a.Codigo, a.Nombre, a.Descripcion, a.Precio, m.Id AS IdMarca, m.Descripcion AS DescripcionMarca, c.Id AS IdCategoria, c.Descripcion AS DescripcionCategoria FROM Articulos a LEFT JOIN Marcas m ON m.Id = a.IdMarca LEFT JOIN Categorias c ON c.Id = a.IdCategoria WHERE a.Id = @Id");
+                datos.setearParametro("@Id", id);
+                datos.ejecutarLectura();
 
-                using (SqlDataReader lector = comando.ExecuteReader())
+                if (datos.Lector.Read())
                 {
-                    if (lector.Read())
+                    articulo = new Articulo();
+                    articulo.Id = (int)datos.Lector["Id"];
+                    articulo.Codigo = datos.Lector["Codigo"] is DBNull ? string.Empty : (string)datos.Lector["Codigo"];
+                    articulo.Nombre = datos.Lector["Nombre"] is DBNull ? string.Empty : (string)datos.Lector["Nombre"];
+
+                    if (!(datos.Lector["Descripcion"] is DBNull))
+                        articulo.Descripcion = (string)datos.Lector["Descripcion"];
+
+                    articulo.Precio = datos.Lector["Precio"] is DBNull ? 0 : (decimal)datos.Lector["Precio"];
+
+                    articulo.Marca = new Marca();
+                    if (!(datos.Lector["IdMarca"] is DBNull))
                     {
-                        articulo = LeerArticulo(lector);
+                        articulo.Marca.Id = (int)datos.Lector["IdMarca"];
+                        articulo.Marca.Descripcion = (string)datos.Lector["DescripcionMarca"];
+                    }
+
+                    articulo.Categoria = new Categoria();
+                    if (!(datos.Lector["IdCategoria"] is DBNull))
+                    {
+                        articulo.Categoria.Id = (int)datos.Lector["IdCategoria"];
+                        articulo.Categoria.Descripcion = (string)datos.Lector["DescripcionCategoria"];
                     }
                 }
-            }
 
-            return articulo;
+                return articulo;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
 
         public void Agregar(Articulo articulo)
         {
-            using (SqlConnection conexion = Conexion.ObtenerConexion())
+            AccesoDatos datos = new AccesoDatos();
+            try
             {
-                string consulta = "INSERT INTO Articulos (Codigo, Nombre, Descripcion, Precio, IdMarca, IdCategoria) " +
-                                   "VALUES (@Codigo, @Nombre, @Descripcion, @Precio, @IdMarca, @IdCategoria)";
-                SqlCommand comando = new SqlCommand(consulta, conexion);
-                comando.Parameters.AddWithValue("@Codigo", articulo.Codigo);
-                comando.Parameters.AddWithValue("@Nombre", articulo.Nombre);
-                comando.Parameters.AddWithValue("@Descripcion", (object)articulo.Descripcion ?? DBNull.Value);
-                comando.Parameters.AddWithValue("@Precio", articulo.Precio);
-                comando.Parameters.AddWithValue("@IdMarca", articulo.Marca.Id);
-                comando.Parameters.AddWithValue("@IdCategoria", articulo.Categoria.Id);
+                datos.setearConsulta("INSERT INTO Articulos (Codigo, Nombre, Descripcion, Precio, IdMarca, IdCategoria) VALUES (@Codigo, @Nombre, @Descripcion, @Precio, @IdMarca, @IdCategoria)");
+                datos.setearParametro("@Codigo", (object)articulo.Codigo ?? DBNull.Value);
+                datos.setearParametro("@Nombre", (object)articulo.Nombre ?? DBNull.Value);
+                datos.setearParametro("@Descripcion", (object)articulo.Descripcion ?? DBNull.Value);
+                datos.setearParametro("@Precio", articulo.Precio);
+                datos.setearParametro("@IdMarca", articulo.Marca != null && articulo.Marca.Id > 0 ? (object)articulo.Marca.Id : DBNull.Value);
+                datos.setearParametro("@IdCategoria", articulo.Categoria != null && articulo.Categoria.Id > 0 ? (object)articulo.Categoria.Id : DBNull.Value);
 
-                comando.ExecuteNonQuery();
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
             }
         }
 
         public void Modificar(Articulo articulo)
         {
-            using (SqlConnection conexion = Conexion.ObtenerConexion())
+            AccesoDatos datos = new AccesoDatos();
+            try
             {
-                string consulta = "UPDATE Articulos SET Codigo = @Codigo, Nombre = @Nombre, Descripcion = @Descripcion, " +
-                                   "Precio = @Precio, IdMarca = @IdMarca, IdCategoria = @IdCategoria WHERE Id = @Id";
-                SqlCommand comando = new SqlCommand(consulta, conexion);
-                comando.Parameters.AddWithValue("@Codigo", articulo.Codigo);
-                comando.Parameters.AddWithValue("@Nombre", articulo.Nombre);
-                comando.Parameters.AddWithValue("@Descripcion", (object)articulo.Descripcion ?? DBNull.Value);
-                comando.Parameters.AddWithValue("@Precio", articulo.Precio);
-                comando.Parameters.AddWithValue("@IdMarca", articulo.Marca.Id);
-                comando.Parameters.AddWithValue("@IdCategoria", articulo.Categoria.Id);
-                comando.Parameters.AddWithValue("@Id", articulo.Id);
+                datos.setearConsulta("UPDATE Articulos SET Codigo = @Codigo, Nombre = @Nombre, Descripcion = @Descripcion, Precio = @Precio, IdMarca = @IdMarca, IdCategoria = @IdCategoria WHERE Id = @Id");
+                datos.setearParametro("@Codigo", (object)articulo.Codigo ?? DBNull.Value);
+                datos.setearParametro("@Nombre", (object)articulo.Nombre ?? DBNull.Value);
+                datos.setearParametro("@Descripcion", (object)articulo.Descripcion ?? DBNull.Value);
+                datos.setearParametro("@Precio", articulo.Precio);
+                datos.setearParametro("@IdMarca", articulo.Marca != null && articulo.Marca.Id > 0 ? (object)articulo.Marca.Id : DBNull.Value);
+                datos.setearParametro("@IdCategoria", articulo.Categoria != null && articulo.Categoria.Id > 0 ? (object)articulo.Categoria.Id : DBNull.Value);
+                datos.setearParametro("@Id", articulo.Id);
 
-                comando.ExecuteNonQuery();
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
             }
         }
 
-        public void EliminarLogico(int id)
+        public void Eliminar(int id)
         {
-            // La base real no tiene columna Eliminado, así que esto es una baja física.
-            using (SqlConnection conexion = Conexion.ObtenerConexion())
+            AccesoDatos datos = new AccesoDatos();
+            try
             {
-                string consulta = "DELETE FROM Articulos WHERE Id = @Id";
-                SqlCommand comando = new SqlCommand(consulta, conexion);
-                comando.Parameters.AddWithValue("@Id", id);
-
-                comando.ExecuteNonQuery();
+                datos.setearConsulta("DELETE FROM Articulos WHERE Id = @Id");
+                datos.setearParametro("@Id", id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
             }
         }
     }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TPWinForm_equipo_B
 {
-    internal class Articulo
+    public class Articulo
     {
         public Articulo() 
         {

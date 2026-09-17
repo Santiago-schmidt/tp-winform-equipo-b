@@ -1,100 +1,125 @@
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TPWinForm_equipo_B
 {
-    internal sealed class MarcaRepositorio : IRepositorioMarca
+    public class MarcaRepositorio
     {
         public List<Marca> Listar()
         {
             List<Marca> marcas = new List<Marca>();
+            AccesoDatos datos = new AccesoDatos();
 
-            using (SqlConnection conexion = Conexion.ObtenerConexion())
+            try
             {
-                string consulta = "SELECT Id, Descripcion FROM Marcas";
-                SqlCommand comando = new SqlCommand(consulta, conexion);
+                datos.setearConsulta("SELECT Id, Descripcion FROM Marcas");
+                datos.ejecutarLectura();
 
-                using (SqlDataReader lector = comando.ExecuteReader())
+                while (datos.Lector.Read())
                 {
-                    while (lector.Read())
-                    {
-                        marcas.Add(new Marca
-                        {
-                            Id = (int)lector["Id"],
-                            Descripcion = (string)lector["Descripcion"]
-                        });
-                    }
+                    Marca aux = new Marca();
+                    aux.Id = (int)datos.Lector["Id"];
+                    aux.Descripcion = datos.Lector["Descripcion"] is DBNull ? string.Empty : (string)datos.Lector["Descripcion"];
+                    marcas.Add(aux);
                 }
-            }
 
-            return marcas;
+                return marcas;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
 
         public Marca ObtenerPorId(int id)
         {
             Marca marca = null;
+            AccesoDatos datos = new AccesoDatos();
 
-            using (SqlConnection conexion = Conexion.ObtenerConexion())
+            try
             {
-                string consulta = "SELECT Id, Descripcion FROM Marcas WHERE Id = @Id";
-                SqlCommand comando = new SqlCommand(consulta, conexion);
-                comando.Parameters.AddWithValue("@Id", id);
+                datos.setearConsulta("SELECT Id, Descripcion FROM Marcas WHERE Id = @Id");
+                datos.setearParametro("@Id", id);
+                datos.ejecutarLectura();
 
-                using (SqlDataReader lector = comando.ExecuteReader())
+                if (datos.Lector.Read())
                 {
-                    if (lector.Read())
-                    {
-                        marca = new Marca
-                        {
-                            Id = (int)lector["Id"],
-                            Descripcion = (string)lector["Descripcion"]
-                        };
-                    }
+                    marca = new Marca();
+                    marca.Id = (int)datos.Lector["Id"];
+                    marca.Descripcion = datos.Lector["Descripcion"] is DBNull ? string.Empty : (string)datos.Lector["Descripcion"];
                 }
-            }
 
-            return marca;
+                return marca;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
 
         public void Agregar(Marca marca)
         {
-            using (SqlConnection conexion = Conexion.ObtenerConexion())
+            AccesoDatos datos = new AccesoDatos();
+            try
             {
-                string consulta = "INSERT INTO Marcas (Descripcion) VALUES (@Descripcion)";
-                SqlCommand comando = new SqlCommand(consulta, conexion);
-                comando.Parameters.AddWithValue("@Descripcion", marca.Descripcion);
-
-                comando.ExecuteNonQuery();
+                datos.setearConsulta("INSERT INTO Marcas (Descripcion) VALUES (@Descripcion)");
+                datos.setearParametro("@Descripcion", (object)marca.Descripcion ?? DBNull.Value);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
             }
         }
 
         public void Modificar(Marca marca)
         {
-            using (SqlConnection conexion = Conexion.ObtenerConexion())
+            AccesoDatos datos = new AccesoDatos();
+            try
             {
-                string consulta = "UPDATE Marcas SET Descripcion = @Descripcion WHERE Id = @Id";
-                SqlCommand comando = new SqlCommand(consulta, conexion);
-                comando.Parameters.AddWithValue("@Descripcion", marca.Descripcion);
-                comando.Parameters.AddWithValue("@Id", marca.Id);
-
-                comando.ExecuteNonQuery();
+                datos.setearConsulta("UPDATE Marcas SET Descripcion = @Descripcion WHERE Id = @Id");
+                datos.setearParametro("@Descripcion", (object)marca.Descripcion ?? DBNull.Value);
+                datos.setearParametro("@Id", marca.Id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
             }
         }
 
-        public void EliminarLogico(int id)
+        public void Eliminar(int id)
         {
-            // La base real no tiene columna Eliminado, así que esto es una baja física.
-            using (SqlConnection conexion = Conexion.ObtenerConexion())
+            AccesoDatos datos = new AccesoDatos();
+            try
             {
-                string consulta = "DELETE FROM Marcas WHERE Id = @Id";
-                SqlCommand comando = new SqlCommand(consulta, conexion);
-                comando.Parameters.AddWithValue("@Id", id);
-
-                comando.ExecuteNonQuery();
+                datos.setearConsulta("DELETE FROM Marcas WHERE Id = @Id");
+                datos.setearParametro("@Id", id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
             }
         }
     }

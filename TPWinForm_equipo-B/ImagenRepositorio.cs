@@ -1,104 +1,129 @@
 using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TPWinForm_equipo_B
 {
-    internal sealed class ImagenRepositorio : IRepositorioImagen
+    public class ImagenRepositorio
     {
         public List<Imagen> Listar()
         {
             List<Imagen> imagenes = new List<Imagen>();
+            AccesoDatos datos = new AccesoDatos();
 
-            using (SqlConnection conexion = Conexion.ObtenerConexion())
+            try
             {
-                string consulta = "SELECT Id, IdArticulo, ImagenUrl FROM Imagenes";
-                SqlCommand comando = new SqlCommand(consulta, conexion);
+                datos.setearConsulta("SELECT Id, IdArticulo, ImagenUrl FROM Imagenes");
+                datos.ejecutarLectura();
 
-                using (SqlDataReader lector = comando.ExecuteReader())
+                while (datos.Lector.Read())
                 {
-                    while (lector.Read())
-                    {
-                        imagenes.Add(new Imagen
-                        {
-                            Id = (int)lector["Id"],
-                            IdArticulo = (int)lector["IdArticulo"],
-                            ImagenUrl = (string)lector["ImagenUrl"]
-                        });
-                    }
+                    Imagen aux = new Imagen();
+                    aux.Id = (int)datos.Lector["Id"];
+                    aux.IdArticulo = (int)datos.Lector["IdArticulo"];
+                    aux.ImagenUrl = (string)datos.Lector["ImagenUrl"];
+                    imagenes.Add(aux);
                 }
-            }
 
-            return imagenes;
+                return imagenes;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
 
         public Imagen ObtenerPorId(int id)
         {
             Imagen imagen = null;
+            AccesoDatos datos = new AccesoDatos();
 
-            using (SqlConnection conexion = Conexion.ObtenerConexion())
+            try
             {
-                string consulta = "SELECT Id, IdArticulo, ImagenUrl FROM Imagenes WHERE Id = @Id";
-                SqlCommand comando = new SqlCommand(consulta, conexion);
-                comando.Parameters.AddWithValue("@Id", id);
+                datos.setearConsulta("SELECT Id, IdArticulo, ImagenUrl FROM Imagenes WHERE Id = @Id");
+                datos.setearParametro("@Id", id);
+                datos.ejecutarLectura();
 
-                using (SqlDataReader lector = comando.ExecuteReader())
+                if (datos.Lector.Read())
                 {
-                    if (lector.Read())
-                    {
-                        imagen = new Imagen
-                        {
-                            Id = (int)lector["Id"],
-                            IdArticulo = (int)lector["IdArticulo"],
-                            ImagenUrl = (string)lector["ImagenUrl"]
-                        };
-                    }
+                    imagen = new Imagen();
+                    imagen.Id = (int)datos.Lector["Id"];
+                    imagen.IdArticulo = (int)datos.Lector["IdArticulo"];
+                    imagen.ImagenUrl = (string)datos.Lector["ImagenUrl"];
                 }
-            }
 
-            return imagen;
+                return imagen;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
         }
 
         public void Agregar(Imagen imagen)
         {
-            using (SqlConnection conexion = Conexion.ObtenerConexion())
+            AccesoDatos datos = new AccesoDatos();
+            try
             {
-                string consulta = "INSERT INTO Imagenes (IdArticulo, ImagenUrl) VALUES (@IdArticulo, @ImagenUrl)";
-                SqlCommand comando = new SqlCommand(consulta, conexion);
-                comando.Parameters.AddWithValue("@IdArticulo", imagen.IdArticulo);
-                comando.Parameters.AddWithValue("@ImagenUrl", imagen.ImagenUrl);
-
-                comando.ExecuteNonQuery();
+                datos.setearConsulta("INSERT INTO Imagenes (IdArticulo, ImagenUrl) VALUES (@IdArticulo, @ImagenUrl)");
+                datos.setearParametro("@IdArticulo", imagen.IdArticulo);
+                datos.setearParametro("@ImagenUrl", (object)imagen.ImagenUrl ?? DBNull.Value);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
             }
         }
 
         public void Modificar(Imagen imagen)
         {
-            using (SqlConnection conexion = Conexion.ObtenerConexion())
+            AccesoDatos datos = new AccesoDatos();
+            try
             {
-                string consulta = "UPDATE Imagenes SET IdArticulo = @IdArticulo, ImagenUrl = @ImagenUrl WHERE Id = @Id";
-                SqlCommand comando = new SqlCommand(consulta, conexion);
-                comando.Parameters.AddWithValue("@IdArticulo", imagen.IdArticulo);
-                comando.Parameters.AddWithValue("@ImagenUrl", imagen.ImagenUrl);
-                comando.Parameters.AddWithValue("@Id", imagen.Id);
-
-                comando.ExecuteNonQuery();
+                datos.setearConsulta("UPDATE Imagenes SET IdArticulo = @IdArticulo, ImagenUrl = @ImagenUrl WHERE Id = @Id");
+                datos.setearParametro("@IdArticulo", imagen.IdArticulo);
+                datos.setearParametro("@ImagenUrl", (object)imagen.ImagenUrl ?? DBNull.Value);
+                datos.setearParametro("@Id", imagen.Id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
             }
         }
 
-        public void EliminarLogico(int id)
+        public void Eliminar(int id)
         {
-            // La base real no tiene columna Eliminado, así que esto es una baja física.
-            using (SqlConnection conexion = Conexion.ObtenerConexion())
+            AccesoDatos datos = new AccesoDatos();
+            try
             {
-                string consulta = "DELETE FROM Imagenes WHERE Id = @Id";
-                SqlCommand comando = new SqlCommand(consulta, conexion);
-                comando.Parameters.AddWithValue("@Id", id);
-
-                comando.ExecuteNonQuery();
+                datos.setearConsulta("DELETE FROM Imagenes WHERE Id = @Id");
+                datos.setearParametro("@Id", id);
+                datos.ejecutarAccion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
             }
         }
     }
