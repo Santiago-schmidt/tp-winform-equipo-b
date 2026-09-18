@@ -30,5 +30,21 @@ namespace TPWinForm_equipo_B
             cmbCategoria.DisplayMember = "Descripcion";
             cmbCategoria.ValueMember = "Id";
         }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            Articulo articulo = new Articulo();
+            articulo.Codigo = txtCodigo.Text;
+            articulo.Nombre = txtNombre.Text;
+            articulo.Descripcion = txtDescripcion.Text;
+            articulo.Precio = decimal.Parse(txtPrecio.Text);
+            articulo.Marca = (Marca)cmbMarca.SelectedItem;
+            articulo.Categoria = (Categoria)cmbCategoria.SelectedItem;
+
+            ArticuloRepositorio repo = new ArticuloRepositorio();
+            repo.Agregar(articulo);
+
+            this.Close();
+        }
     }
 }
