@@ -51,6 +51,18 @@
     <Compile Include="Categoria.cs" />
     <Compile Include="CategoriaRepositorio.cs" />
     <Compile Include="Conexion.cs" />
+    <Compile Include="FrmDetalleArticulo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDetalleArticulo.Designer.cs">
+      <DependentUpon>FrmDetalleArticulo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMarcas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMarcas.Designer.cs">
+      <DependentUpon>FrmMarcas.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +82,12 @@
     <Compile Include="Program.cs" />
     <Compile Include="Validaciones.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmDetalleArticulo.resx">
+      <DependentUpon>FrmDetalleArticulo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMarcas.resx">
+      <DependentUpon>FrmMarcas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmPrincipal.resx">
       <DependentUpon>frmPrincipal.cs</DependentUpon>
     </EmbeddedResource>
