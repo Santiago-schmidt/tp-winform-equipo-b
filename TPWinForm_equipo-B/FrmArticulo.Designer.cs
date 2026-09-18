@@ -36,6 +36,10 @@ namespace TPWinForm_equipo_B
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.lblPrecio = new System.Windows.Forms.Label();
             this.txtPrecio = new System.Windows.Forms.TextBox();
+            this.lblMarca = new System.Windows.Forms.Label();
+            this.cmbMarca = new System.Windows.Forms.ComboBox();
+            this.lblCategoria = new System.Windows.Forms.Label();
+            this.cmbCategoria = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             //
             // lblCodigo
@@ -103,11 +107,51 @@ namespace TPWinForm_equipo_B
             this.txtPrecio.Size = new System.Drawing.Size(100, 20);
             this.txtPrecio.TabIndex = 7;
             //
+            // lblMarca
+            //
+            this.lblMarca.AutoSize = true;
+            this.lblMarca.Location = new System.Drawing.Point(30, 230);
+            this.lblMarca.Name = "lblMarca";
+            this.lblMarca.Size = new System.Drawing.Size(40, 13);
+            this.lblMarca.TabIndex = 8;
+            this.lblMarca.Text = "Marca:";
+            //
+            // cmbMarca
+            //
+            this.cmbMarca.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbMarca.FormattingEnabled = true;
+            this.cmbMarca.Location = new System.Drawing.Point(140, 227);
+            this.cmbMarca.Name = "cmbMarca";
+            this.cmbMarca.Size = new System.Drawing.Size(200, 21);
+            this.cmbMarca.TabIndex = 9;
+            //
+            // lblCategoria
+            //
+            this.lblCategoria.AutoSize = true;
+            this.lblCategoria.Location = new System.Drawing.Point(30, 270);
+            this.lblCategoria.Name = "lblCategoria";
+            this.lblCategoria.Size = new System.Drawing.Size(58, 13);
+            this.lblCategoria.TabIndex = 10;
+            this.lblCategoria.Text = "Categoría:";
+            //
+            // cmbCategoria
+            //
+            this.cmbCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbCategoria.FormattingEnabled = true;
+            this.cmbCategoria.Location = new System.Drawing.Point(140, 267);
+            this.cmbCategoria.Name = "cmbCategoria";
+            this.cmbCategoria.Size = new System.Drawing.Size(200, 21);
+            this.cmbCategoria.TabIndex = 11;
+            //
             // FrmArticulo
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(400, 250);
+            this.ClientSize = new System.Drawing.Size(400, 320);
+            this.Controls.Add(this.cmbCategoria);
+            this.Controls.Add(this.lblCategoria);
+            this.Controls.Add(this.cmbMarca);
+            this.Controls.Add(this.lblMarca);
             this.Controls.Add(this.txtPrecio);
             this.Controls.Add(this.lblPrecio);
             this.Controls.Add(this.txtDescripcion);
@@ -133,5 +177,9 @@ namespace TPWinForm_equipo_B
         private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.Label lblPrecio;
         private System.Windows.Forms.TextBox txtPrecio;
+        private System.Windows.Forms.Label lblMarca;
+        private System.Windows.Forms.ComboBox cmbMarca;
+        private System.Windows.Forms.Label lblCategoria;
+        private System.Windows.Forms.ComboBox cmbCategoria;
     }
 }

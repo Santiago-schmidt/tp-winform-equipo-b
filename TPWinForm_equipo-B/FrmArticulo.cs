@@ -15,6 +15,20 @@ namespace TPWinForm_equipo_B
         public FrmArticulo()
         {
             InitializeComponent();
+            CargarCombos();
+        }
+
+        private void CargarCombos()
+        {
+            MarcaRepositorio marcaRepo = new MarcaRepositorio();
+            cmbMarca.DataSource = marcaRepo.Listar();
+            cmbMarca.DisplayMember = "Descripcion";
+            cmbMarca.ValueMember = "Id";
+
+            CategoriaRepositorio categoriaRepo = new CategoriaRepositorio();
+            cmbCategoria.DataSource = categoriaRepo.Listar();
+            cmbCategoria.DisplayMember = "Descripcion";
+            cmbCategoria.ValueMember = "Id";
         }
     }
 }
