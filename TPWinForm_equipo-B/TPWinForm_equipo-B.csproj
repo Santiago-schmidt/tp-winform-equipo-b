@@ -47,7 +47,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Articulo.cs" />
-    <Compile Include="ArticuloBuscador.cs" />
     <Compile Include="ArticuloRepositorio.cs" />
     <Compile Include="Categoria.cs" />
     <Compile Include="CategoriaRepositorio.cs" />
