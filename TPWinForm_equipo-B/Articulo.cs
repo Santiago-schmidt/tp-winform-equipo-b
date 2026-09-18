@@ -21,6 +21,16 @@ namespace TPWinForm_equipo_B
         public List<Imagen> Imagenes { get; set; }
         public decimal Precio { get; set; }
 
+        public string MarcaDescripcion
+        {
+            get { return Marca != null ? Marca.Descripcion : string.Empty; }
+        }
+
+        public string CategoriaDescripcion
+        {
+            get { return Categoria != null ? Categoria.Descripcion : string.Empty; }
+        }
+
         public override string ToString()
         {
             return Descripcion;

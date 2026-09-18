@@ -29,9 +29,29 @@ namespace TPWinForm_equipo_B
             dgvArticulos.DataSource = repo.Listar();
 
             // 2. Ocultar las columnas que no deben verse
-            dgvArticulos.Columns["Id"].Visible = false;
-            dgvArticulos.Columns["Descripcion"].Visible = false;
-            dgvArticulos.Columns["Imagenes"].Visible = false;
+            OcultarColumna("Id");
+            OcultarColumna("Descripcion");
+            OcultarColumna("Imagenes");
+            OcultarColumna("Marca");
+            OcultarColumna("Categoria");
+
+            if (dgvArticulos.Columns.Contains("MarcaDescripcion"))
+            {
+                dgvArticulos.Columns["MarcaDescripcion"].HeaderText = "Marca";
+            }
+
+            if (dgvArticulos.Columns.Contains("CategoriaDescripcion"))
+            {
+                dgvArticulos.Columns["CategoriaDescripcion"].HeaderText = "Categoría";
+            }
+        }
+
+        private void OcultarColumna(string nombreColumna)
+        {
+            if (dgvArticulos.Columns.Contains(nombreColumna))
+            {
+                dgvArticulos.Columns[nombreColumna].Visible = false;
+            }
         }
     }
 }
