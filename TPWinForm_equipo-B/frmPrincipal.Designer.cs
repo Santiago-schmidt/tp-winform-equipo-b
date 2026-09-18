@@ -64,7 +64,7 @@
             this.administraciónToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1282, 32);
+            this.menuStrip1.Size = new System.Drawing.Size(1838, 32);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -108,7 +108,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(12, 52);
+            this.label1.Location = new System.Drawing.Point(12, 56);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(116, 25);
             this.label1.TabIndex = 1;
@@ -119,7 +119,7 @@
             this.cbCampo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbCampo.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.cbCampo.FormattingEnabled = true;
-            this.cbCampo.Location = new System.Drawing.Point(172, 48);
+            this.cbCampo.Location = new System.Drawing.Point(132, 48);
             this.cbCampo.Name = "cbCampo";
             this.cbCampo.Size = new System.Drawing.Size(193, 33);
             this.cbCampo.TabIndex = 2;
@@ -130,7 +130,7 @@
             this.cbCriterio.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbCriterio.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.cbCriterio.FormattingEnabled = true;
-            this.cbCriterio.Location = new System.Drawing.Point(409, 48);
+            this.cbCriterio.Location = new System.Drawing.Point(331, 48);
             this.cbCriterio.Name = "cbCriterio";
             this.cbCriterio.Size = new System.Drawing.Size(193, 33);
             this.cbCriterio.TabIndex = 3;
@@ -140,16 +140,16 @@
             // 
             this.tbFiltro.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbFiltro.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Italic);
-            this.tbFiltro.Location = new System.Drawing.Point(646, 49);
+            this.tbFiltro.Location = new System.Drawing.Point(548, 48);
             this.tbFiltro.Name = "tbFiltro";
-            this.tbFiltro.Size = new System.Drawing.Size(222, 32);
+            this.tbFiltro.Size = new System.Drawing.Size(447, 32);
             this.tbFiltro.TabIndex = 4;
             this.tbFiltro.Text = " Filtro...";
             // 
             // btnBuscar
             // 
             this.btnBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.btnBuscar.Location = new System.Drawing.Point(926, 47);
+            this.btnBuscar.Location = new System.Drawing.Point(1024, 47);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(195, 34);
             this.btnBuscar.TabIndex = 5;
@@ -162,10 +162,11 @@
             this.dgvArticulos.Location = new System.Drawing.Point(17, 106);
             this.dgvArticulos.MultiSelect = false;
             this.dgvArticulos.Name = "dgvArticulos";
+            this.dgvArticulos.ReadOnly = true;
             this.dgvArticulos.RowHeadersWidth = 51;
             this.dgvArticulos.RowTemplate.Height = 24;
             this.dgvArticulos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvArticulos.Size = new System.Drawing.Size(852, 462);
+            this.dgvArticulos.Size = new System.Drawing.Size(1202, 570);
             this.dgvArticulos.TabIndex = 6;
             // 
             // btnAnterior
@@ -173,9 +174,9 @@
             this.btnAnterior.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnAnterior.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAnterior.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnAnterior.Location = new System.Drawing.Point(915, 419);
+            this.btnAnterior.Location = new System.Drawing.Point(1312, 634);
             this.btnAnterior.Name = "btnAnterior";
-            this.btnAnterior.Size = new System.Drawing.Size(50, 42);
+            this.btnAnterior.Size = new System.Drawing.Size(65, 42);
             this.btnAnterior.TabIndex = 8;
             this.btnAnterior.Text = "<";
             this.btnAnterior.UseVisualStyleBackColor = false;
@@ -185,9 +186,9 @@
             this.btnSiguiente.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnSiguiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSiguiente.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnSiguiente.Location = new System.Drawing.Point(1191, 419);
+            this.btnSiguiente.Location = new System.Drawing.Point(1679, 634);
             this.btnSiguiente.Name = "btnSiguiente";
-            this.btnSiguiente.Size = new System.Drawing.Size(50, 42);
+            this.btnSiguiente.Size = new System.Drawing.Size(73, 42);
             this.btnSiguiente.TabIndex = 8;
             this.btnSiguiente.Text = ">";
             this.btnSiguiente.UseVisualStyleBackColor = false;
@@ -196,9 +197,9 @@
             // 
             this.pbxArticulo.ErrorImage = global::TPWinForm_equipo_B.Properties.Resources.Imagen_no_disponible;
             this.pbxArticulo.InitialImage = global::TPWinForm_equipo_B.Properties.Resources.Phoenix1;
-            this.pbxArticulo.Location = new System.Drawing.Point(903, 106);
+            this.pbxArticulo.Location = new System.Drawing.Point(1251, 106);
             this.pbxArticulo.Name = "pbxArticulo";
-            this.pbxArticulo.Size = new System.Drawing.Size(356, 307);
+            this.pbxArticulo.Size = new System.Drawing.Size(565, 522);
             this.pbxArticulo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbxArticulo.TabIndex = 7;
             this.pbxArticulo.TabStop = false;
@@ -206,7 +207,7 @@
             // lblImagen
             // 
             this.lblImagen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblImagen.Location = new System.Drawing.Point(1026, 428);
+            this.lblImagen.Location = new System.Drawing.Point(1481, 643);
             this.lblImagen.Name = "lblImagen";
             this.lblImagen.Size = new System.Drawing.Size(110, 25);
             this.lblImagen.TabIndex = 9;
@@ -218,7 +219,7 @@
             this.button1.BackColor = System.Drawing.Color.ForestGreen;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(17, 597);
+            this.button1.Location = new System.Drawing.Point(17, 693);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(195, 44);
             this.button1.TabIndex = 5;
@@ -230,7 +231,7 @@
             this.button2.BackColor = System.Drawing.Color.Goldenrod;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(242, 597);
+            this.button2.Location = new System.Drawing.Point(352, 693);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(195, 44);
             this.button2.TabIndex = 5;
@@ -242,7 +243,7 @@
             this.button3.BackColor = System.Drawing.Color.Firebrick;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(461, 597);
+            this.button3.Location = new System.Drawing.Point(687, 693);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(195, 44);
             this.button3.TabIndex = 5;
@@ -254,7 +255,7 @@
             this.button4.BackColor = System.Drawing.Color.SlateGray;
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(674, 597);
+            this.button4.Location = new System.Drawing.Point(1022, 693);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(195, 44);
             this.button4.TabIndex = 5;
@@ -266,7 +267,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1282, 662);
+            this.ClientSize = new System.Drawing.Size(1838, 765);
             this.Controls.Add(this.lblImagen);
             this.Controls.Add(this.btnSiguiente);
             this.Controls.Add(this.btnAnterior);

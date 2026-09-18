@@ -13,7 +13,8 @@ namespace TPWinForm_equipo_B
 
         public override string ToString()
         {
-            return Descripcion;
+            // Si la descripción es nula, devuelve "Sin asignar"
+            return Descripcion ?? "Sin asignar";
         }
     }
 }
