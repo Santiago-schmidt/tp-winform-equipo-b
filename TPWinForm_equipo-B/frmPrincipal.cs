@@ -14,6 +14,9 @@ namespace TPWinForm_equipo_B
     public partial class frmPrincipal : Form
     {
         private bool ordenAscendente = true;
+        private List<Imagen> listaImagenesActual;
+        private int indiceImagenActual = 0;
+        private Image imagenPorDefecto;
         private CursorFlecha modificadorCursorCampo;
         private CursorFlecha modificadorCursorCriterio;
         
@@ -75,6 +78,8 @@ namespace TPWinForm_equipo_B
 
             // Quitar el foco inicial a los ComboBox
             this.ActiveControl = dgvArticulos;
+
+            imagenPorDefecto = pbxArticulo.Image;
 
 
 
@@ -179,7 +184,7 @@ namespace TPWinForm_equipo_B
             IntPtr editHandle = GetWindow(cbCriterio.Handle, GW_CHILD);
             HideCaret(editHandle);
         }
-    private class CursorFlecha : NativeWindow
+        private class CursorFlecha : NativeWindow
     {
         public CursorFlecha(IntPtr handle)
         {
@@ -266,7 +271,7 @@ namespace TPWinForm_equipo_B
 
             // Limpiar el símbolo de ordenamiento de todas las columnas
             foreach (DataGridViewColumn columna in dgvArticulos.Columns)
-{
+            {
                 columna.HeaderCell.SortGlyphDirection = SortOrder.None;
             }
 
@@ -304,6 +309,84 @@ namespace TPWinForm_equipo_B
                    e.Value = precioTruncado.ToString("C2", new System.Globalization.CultureInfo("es-AR"));
                     e.FormattingApplied = true;
                 }
+            }
+        }
+        private void ActualizarInterfazImagen()
+        {
+            // Si no hay imágenes para el artículo seleccionado
+            if (listaImagenesActual == null || listaImagenesActual.Count == 0)
+            {
+                pbxArticulo.Image = imagenPorDefecto;
+                lblImagen.Text = "Sin Imágenes";
+                btnAnterior.Enabled = false;
+                btnSiguiente.Enabled = false;
+                return;
+            }
+
+            // Si hay imágenes, intentamos cargar la actual
+            try
+            {
+                pbxArticulo.Load(listaImagenesActual[indiceImagenActual].ImagenUrl);
+            }
+            catch (Exception)
+            {
+                // Si la URL devuelve error 404 o el enlace está roto, usamos la imagen por defecto
+                pbxArticulo.Image = imagenPorDefecto;
+            }
+
+            // Actualizar el Label
+            lblImagen.Text = $"Imagen {indiceImagenActual + 1}/{listaImagenesActual.Count}";
+
+            // Desactivar botones si solo hay 1 imagen, activarlos si hay más de 1
+            bool habilitarBotones = listaImagenesActual.Count > 1;
+            btnAnterior.Enabled = habilitarBotones;
+            btnSiguiente.Enabled = habilitarBotones;
+        }
+
+        private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvArticulos.CurrentRow != null)
+            {
+                Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+
+                ImagenRepositorio repoImg = new ImagenRepositorio();
+                // Debes asegurarte de tener un método en tu repositorio que busque por IdArticulo
+                listaImagenesActual = repoImg.ListarPorArticulo(seleccionado.Id);
+
+                indiceImagenActual = 0; // Reiniciar el índice al seleccionar un artículo nuevo
+                ActualizarInterfazImagen();
+            }
+        }
+
+        private void btnSiguiente_Click(object sender, EventArgs e)
+        {
+            if (listaImagenesActual != null && listaImagenesActual.Count > 0)
+            {
+                indiceImagenActual++;
+
+                // Si superamos la última imagen, volvemos a la primera (índice 0)
+                if (indiceImagenActual >= listaImagenesActual.Count)
+                {
+                    indiceImagenActual = 0;
+                }
+
+                ActualizarInterfazImagen();
+            }
+        }
+
+        private void btnAnterior_Click(object sender, EventArgs e)
+        {
+            if (listaImagenesActual != null && listaImagenesActual.Count > 0)
+            {
+                indiceImagenActual--;
+
+                // Si retrocedemos antes de la primera, vamos a la última
+                if (indiceImagenActual < 0)
+                {
+                    indiceImagenActual = listaImagenesActual.Count - 1;
+                }
+
+                ActualizarInterfazImagen();
             }
         }
     }
