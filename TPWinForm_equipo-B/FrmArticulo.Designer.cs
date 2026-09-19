@@ -40,6 +40,7 @@ namespace TPWinForm_equipo_B
             this.cmbMarca = new System.Windows.Forms.ComboBox();
             this.lblCategoria = new System.Windows.Forms.Label();
             this.cmbCategoria = new System.Windows.Forms.ComboBox();
+            this.btnGuardar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             //
             // lblCodigo
@@ -143,11 +144,22 @@ namespace TPWinForm_equipo_B
             this.cmbCategoria.Size = new System.Drawing.Size(200, 21);
             this.cmbCategoria.TabIndex = 11;
             //
+            // btnGuardar
+            //
+            this.btnGuardar.Location = new System.Drawing.Point(140, 310);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(100, 30);
+            this.btnGuardar.TabIndex = 12;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            //
             // FrmArticulo
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(400, 320);
+            this.ClientSize = new System.Drawing.Size(400, 360);
+            this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.cmbCategoria);
             this.Controls.Add(this.lblCategoria);
             this.Controls.Add(this.cmbMarca);
@@ -181,5 +193,6 @@ namespace TPWinForm_equipo_B
         private System.Windows.Forms.ComboBox cmbMarca;
         private System.Windows.Forms.Label lblCategoria;
         private System.Windows.Forms.ComboBox cmbCategoria;
+        private System.Windows.Forms.Button btnGuardar;
     }
 }
