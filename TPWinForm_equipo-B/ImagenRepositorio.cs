@@ -108,6 +108,38 @@ namespace TPWinForm_equipo_B
             }
         }
 
+        public List<Imagen> ListarPorArticulo(int idArticulo)
+        {
+            List<Imagen> imagenes = new List<Imagen>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearConsulta("SELECT Id, IdArticulo, ImagenUrl FROM Imagenes WHERE IdArticulo = @IdArticulo");
+                datos.setearParametro("@IdArticulo", idArticulo);
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Imagen aux = new Imagen();
+                    aux.Id = (int)datos.Lector["Id"];
+                    aux.IdArticulo = (int)datos.Lector["IdArticulo"];
+                    aux.ImagenUrl = (string)datos.Lector["ImagenUrl"];
+                    imagenes.Add(aux);
+                }
+
+                return imagenes;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
         public void Eliminar(int id)
         {
             AccesoDatos datos = new AccesoDatos();

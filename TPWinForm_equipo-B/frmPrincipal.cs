@@ -13,6 +13,7 @@ namespace TPWinForm_equipo_B
 {
     public partial class frmPrincipal : Form
     {
+        private Dictionary<string, Image> cacheImagenes = new Dictionary<string, Image>();
         private bool ordenAscendente = true;
         private List<Imagen> listaImagenesActual;
         private int indiceImagenActual = 0;
@@ -313,34 +314,26 @@ namespace TPWinForm_equipo_B
         }
         private void ActualizarInterfazImagen()
         {
-            // Si no hay imágenes para el artículo seleccionado
-            if (listaImagenesActual == null || listaImagenesActual.Count == 0)
-            {
-                pbxArticulo.Image = imagenPorDefecto;
-                lblImagen.Text = "Sin Imágenes";
-                btnAnterior.Enabled = false;
-                btnSiguiente.Enabled = false;
-                return;
-            }
+            
+                if (listaImagenesActual == null || listaImagenesActual.Count == 0)
+                {
+                    pbxArticulo.Image = imagenPorDefecto;
+                    lblImagen.Text = "Sin Imágenes";
+                    btnAnterior.Enabled = false;
+                    btnSiguiente.Enabled = false;
+                    return;
+                }
 
-            // Si hay imágenes, intentamos cargar la actual
-            try
-            {
-                pbxArticulo.Load(listaImagenesActual[indiceImagenActual].ImagenUrl);
-            }
-            catch (Exception)
-            {
-                // Si la URL devuelve error 404 o el enlace está roto, usamos la imagen por defecto
-                pbxArticulo.Image = imagenPorDefecto;
-            }
+                // Utilizar el sistema de caché en lugar de cargar directamente del PictureBox
+                string urlActual = listaImagenesActual[indiceImagenActual].ImagenUrl;
+                pbxArticulo.Image = ObtenerImagenOptimizada(urlActual);
 
-            // Actualizar el Label
-            lblImagen.Text = $"Imagen {indiceImagenActual + 1}/{listaImagenesActual.Count}";
+                lblImagen.Text = $"Imagen {indiceImagenActual + 1}/{listaImagenesActual.Count}";
 
-            // Desactivar botones si solo hay 1 imagen, activarlos si hay más de 1
-            bool habilitarBotones = listaImagenesActual.Count > 1;
-            btnAnterior.Enabled = habilitarBotones;
-            btnSiguiente.Enabled = habilitarBotones;
+                bool habilitarBotones = listaImagenesActual.Count > 1;
+                btnAnterior.Enabled = habilitarBotones;
+                btnSiguiente.Enabled = habilitarBotones;
+            
         }
 
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
@@ -387,6 +380,51 @@ namespace TPWinForm_equipo_B
                 }
 
                 ActualizarInterfazImagen();
+            }
+        }
+        private Image ObtenerImagenOptimizada(string url)
+        {
+            // 1. Si la imagen ya fue descargada antes, se devuelve inmediatamente desde la memoria
+            if (cacheImagenes.ContainsKey(url))
+            {
+                return cacheImagenes[url];
+            }
+
+            try
+            {
+                // 2. Descargar la imagen de internet
+                System.Net.WebRequest peticion = System.Net.WebRequest.Create(url);
+                using (System.Net.WebResponse respuesta = peticion.GetResponse())
+                using (System.IO.Stream flujo = respuesta.GetResponseStream())
+                {
+                    Image imgOriginal = Image.FromStream(flujo);
+
+                    // 3. Lógica para achicar manteniendo la proporción (Aspect Ratio)
+                    int tamañoMaximo = 400;
+                    int nuevoAncho = imgOriginal.Width;
+                    int nuevoAlto = imgOriginal.Height;
+
+                    // Solo se achica si la imagen es más grande que el límite
+                    if (imgOriginal.Width > tamañoMaximo || imgOriginal.Height > tamañoMaximo)
+                    {
+                        float proporcion = Math.Min((float)tamañoMaximo / imgOriginal.Width, (float)tamañoMaximo / imgOriginal.Height);
+                        nuevoAncho = (int)(imgOriginal.Width * proporcion);
+                        nuevoAlto = (int)(imgOriginal.Height * proporcion);
+                    }
+
+                    // Crear el nuevo mapa de bits reducido
+                    Bitmap imgReducida = new Bitmap(imgOriginal, nuevoAncho, nuevoAlto);
+
+                    // 4. Guardar en el caché para futuros usos
+                    cacheImagenes.Add(url, imgReducida);
+
+                    return imgReducida;
+                }
+            }
+            catch (Exception)
+            {
+                // Si hay un error de conexión, URL rota o tiempo de espera agotado, devuelve la imagen por defecto
+                return imagenPorDefecto;
             }
         }
     }
