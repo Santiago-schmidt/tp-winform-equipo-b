@@ -41,6 +41,8 @@ namespace TPWinForm_equipo_B
             this.lblCategoria = new System.Windows.Forms.Label();
             this.cmbCategoria = new System.Windows.Forms.ComboBox();
             this.btnGuardar = new System.Windows.Forms.Button();
+            this.lblGaleria = new System.Windows.Forms.Label();
+            this.flpGaleria = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
             //
             // lblCodigo
@@ -154,11 +156,31 @@ namespace TPWinForm_equipo_B
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             //
+            // lblGaleria
+            //
+            this.lblGaleria.AutoSize = true;
+            this.lblGaleria.Location = new System.Drawing.Point(370, 30);
+            this.lblGaleria.Name = "lblGaleria";
+            this.lblGaleria.Size = new System.Drawing.Size(56, 13);
+            this.lblGaleria.TabIndex = 13;
+            this.lblGaleria.Text = "Imágenes:";
+            //
+            // flpGaleria
+            //
+            this.flpGaleria.AutoScroll = true;
+            this.flpGaleria.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.flpGaleria.Location = new System.Drawing.Point(370, 50);
+            this.flpGaleria.Name = "flpGaleria";
+            this.flpGaleria.Size = new System.Drawing.Size(260, 290);
+            this.flpGaleria.TabIndex = 14;
+            //
             // FrmArticulo
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(400, 360);
+            this.ClientSize = new System.Drawing.Size(660, 360);
+            this.Controls.Add(this.flpGaleria);
+            this.Controls.Add(this.lblGaleria);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.cmbCategoria);
             this.Controls.Add(this.lblCategoria);
@@ -194,5 +216,7 @@ namespace TPWinForm_equipo_B
         private System.Windows.Forms.Label lblCategoria;
         private System.Windows.Forms.ComboBox cmbCategoria;
         private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.Label lblGaleria;
+        private System.Windows.Forms.FlowLayoutPanel flpGaleria;
     }
 }

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -35,6 +37,45 @@ namespace TPWinForm_equipo_B
 
             if (articulo.Categoria != null)
                 cmbCategoria.SelectedValue = articulo.Categoria.Id;
+
+            CargarGaleria();
+        }
+
+        private void CargarGaleria()
+        {
+            if (articulo == null || articulo.Id == 0)
+                return;
+
+            ImagenRepositorio repo = new ImagenRepositorio();
+            List<Imagen> imagenes = repo.Listar().Where(i => i.IdArticulo == articulo.Id).ToList();
+
+            foreach (Imagen imagen in imagenes)
+            {
+                PictureBox miniatura = new PictureBox();
+                miniatura.Width = 80;
+                miniatura.Height = 80;
+                miniatura.SizeMode = PictureBoxSizeMode.Zoom;
+                miniatura.Margin = new Padding(5);
+
+                try
+                {
+                    using (WebClient cliente = new WebClient())
+                    {
+                        byte[] datos = cliente.DownloadData(imagen.ImagenUrl);
+
+                        using (MemoryStream memoria = new MemoryStream(datos))
+                        {
+                            miniatura.Image = new Bitmap(Image.FromStream(memoria));
+                        }
+                    }
+                }
+                catch
+                {
+                    miniatura.Image = null;
+                }
+
+                flpGaleria.Controls.Add(miniatura);
+            }
         }
 
         private void CargarCombos()
