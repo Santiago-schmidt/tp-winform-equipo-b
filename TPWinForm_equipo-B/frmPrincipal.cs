@@ -15,17 +15,6 @@ namespace TPWinForm_equipo_B
         public frmPrincipal()
         {
             InitializeComponent();
-            // Establecer el tamaño exacto del formulario
-            this.Size = new Size(1856, 812);
-
-            // Centrar la ventana en la pantalla para evitar que los bordes queden fuera del área visible
-            this.StartPosition = FormStartPosition.CenterScreen;
-
-            // Bloquear el redimensionamiento mediante el cursor
-            this.FormBorderStyle = FormBorderStyle.FixedSingle;
-
-            // Deshabilitar el botón de maximizar en la esquina superior derecha
-            this.MaximizeBox = false;
         }
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
@@ -49,36 +38,42 @@ namespace TPWinForm_equipo_B
             if (dgvArticulos.Columns["Imagenes"] != null)
                 dgvArticulos.Columns["Imagenes"].Visible = false;
 
-            // Ocultar la columna en blanco de la izquierda
-            dgvArticulos.RowHeadersVisible = false;
+            if (dgvArticulos.Columns["MarcaDescripcion"] != null)
+                dgvArticulos.Columns["MarcaDescripcion"].Visible = false;
 
-            // Desactivar los temas predeterminados de Windows para habilitar colores personalizados en el encabezado
-            dgvArticulos.EnableHeadersVisualStyles = false;
+            if (dgvArticulos.Columns["CategoriaDescripcion"] != null)
+                dgvArticulos.Columns["CategoriaDescripcion"].Visible = false;
 
-            // Configuración general del control
-            dgvArticulos.BackgroundColor = Color.White;
-            dgvArticulos.BorderStyle = BorderStyle.None;
-            dgvArticulos.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal; // Solo líneas divisorias horizontales
+            cbCampo.Items.Add("Precio");
+            cbCampo.Items.Add("Nombre");
+            cbCampo.Items.Add("Descripción");
 
-            // Configuración visual de los encabezados de columna
-            dgvArticulos.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dgvArticulos.ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(45, 66, 91); // Color azul oscuro formal
-            dgvArticulos.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dgvArticulos.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 10, FontStyle.Bold);
-            dgvArticulos.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dgvArticulos.ColumnHeadersHeight = 30;
 
-            // Configuración visual de las celdas de datos
-            dgvArticulos.DefaultCellStyle.BackColor = Color.White;
-            dgvArticulos.DefaultCellStyle.ForeColor = Color.Black;
-            dgvArticulos.DefaultCellStyle.SelectionBackColor = Color.FromArgb(0, 120, 215); // Color azul estándar de selección
-            dgvArticulos.DefaultCellStyle.SelectionForeColor = Color.White;
-            dgvArticulos.DefaultCellStyle.Font = new Font("Segoe UI", 9, FontStyle.Regular);
 
-            // Configuración de comportamiento y tamaño
-            dgvArticulos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvArticulos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill; // Expande las columnas para ocupar todo el ancho disponible
-            dgvArticulos.AllowUserToResizeRows = false;
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void cbCampo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string opcion = cbCampo.SelectedItem.ToString();
+            cbCriterio.Items.Clear();
+
+            if (opcion == "Precio")
+            {
+                cbCriterio.Items.Add("Mayor a");
+                cbCriterio.Items.Add("Menor a");
+                cbCriterio.Items.Add("Igual a");
+            }
+            else // Para "Nombre" o "Descripción"
+            {
+                cbCriterio.Items.Add("Comienza con");
+                cbCriterio.Items.Add("Termina con");
+                cbCriterio.Items.Add("Contiene");
+            }
         }
     }
 }
