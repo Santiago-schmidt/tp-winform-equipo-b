@@ -61,7 +61,7 @@
             // lblNombreTitulo
             // 
             this.lblNombreTitulo.AutoSize = true;
-            this.lblNombreTitulo.Location = new System.Drawing.Point(55, 109);
+            this.lblNombreTitulo.Location = new System.Drawing.Point(55, 103);
             this.lblNombreTitulo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblNombreTitulo.Name = "lblNombreTitulo";
             this.lblNombreTitulo.Size = new System.Drawing.Size(110, 29);
@@ -71,7 +71,7 @@
             // lblMarcaTitulo
             // 
             this.lblMarcaTitulo.AutoSize = true;
-            this.lblMarcaTitulo.Location = new System.Drawing.Point(55, 171);
+            this.lblMarcaTitulo.Location = new System.Drawing.Point(55, 157);
             this.lblMarcaTitulo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblMarcaTitulo.Name = "lblMarcaTitulo";
             this.lblMarcaTitulo.Size = new System.Drawing.Size(89, 29);
@@ -81,7 +81,7 @@
             // lblCategoriaTitulo
             // 
             this.lblCategoriaTitulo.AutoSize = true;
-            this.lblCategoriaTitulo.Location = new System.Drawing.Point(55, 241);
+            this.lblCategoriaTitulo.Location = new System.Drawing.Point(55, 209);
             this.lblCategoriaTitulo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblCategoriaTitulo.Name = "lblCategoriaTitulo";
             this.lblCategoriaTitulo.Size = new System.Drawing.Size(130, 29);
@@ -91,7 +91,7 @@
             // lblPrecioTitulo
             // 
             this.lblPrecioTitulo.AutoSize = true;
-            this.lblPrecioTitulo.Location = new System.Drawing.Point(55, 286);
+            this.lblPrecioTitulo.Location = new System.Drawing.Point(55, 258);
             this.lblPrecioTitulo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblPrecioTitulo.Name = "lblPrecioTitulo";
             this.lblPrecioTitulo.Size = new System.Drawing.Size(93, 29);
@@ -112,7 +112,7 @@
             // 
             this.lblPrecio.AutoSize = true;
             this.lblPrecio.Font = new System.Drawing.Font("Arial", 12F);
-            this.lblPrecio.Location = new System.Drawing.Point(268, 286);
+            this.lblPrecio.Location = new System.Drawing.Point(268, 258);
             this.lblPrecio.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblPrecio.Name = "lblPrecio";
             this.lblPrecio.Size = new System.Drawing.Size(77, 27);
@@ -123,7 +123,7 @@
             // 
             this.lblCategoria.AutoSize = true;
             this.lblCategoria.Font = new System.Drawing.Font("Arial", 12F);
-            this.lblCategoria.Location = new System.Drawing.Point(268, 241);
+            this.lblCategoria.Location = new System.Drawing.Point(268, 209);
             this.lblCategoria.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblCategoria.Name = "lblCategoria";
             this.lblCategoria.Size = new System.Drawing.Size(77, 27);
@@ -134,7 +134,7 @@
             // 
             this.lblMarca.AutoSize = true;
             this.lblMarca.Font = new System.Drawing.Font("Arial", 12F);
-            this.lblMarca.Location = new System.Drawing.Point(268, 171);
+            this.lblMarca.Location = new System.Drawing.Point(268, 157);
             this.lblMarca.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblMarca.Name = "lblMarca";
             this.lblMarca.Size = new System.Drawing.Size(90, 27);
@@ -145,7 +145,7 @@
             // 
             this.lblNombre.AutoSize = true;
             this.lblNombre.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombre.Location = new System.Drawing.Point(268, 109);
+            this.lblNombre.Location = new System.Drawing.Point(268, 103);
             this.lblNombre.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(88, 27);
@@ -190,6 +190,7 @@
             this.btnAnterior.TabIndex = 13;
             this.btnAnterior.Text = "<";
             this.btnAnterior.UseVisualStyleBackColor = true;
+            this.btnAnterior.Click += new System.EventHandler(this.btnAnterior_Click);
             // 
             // btnSiguiente
             // 
@@ -199,6 +200,7 @@
             this.btnSiguiente.TabIndex = 14;
             this.btnSiguiente.Text = ">";
             this.btnSiguiente.UseVisualStyleBackColor = true;
+            this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
             // 
             // lblContadorImagenes
             // 

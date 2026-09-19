@@ -37,8 +37,8 @@ namespace TPWinForm_equipo_B
             ImagenRepositorio repositorio = new ImagenRepositorio();
 
             imagenes = repositorio.Listar()
-                .Where(x => x.IdArticulo == articulo.Id)
-                .ToList();
+                                    .Where(x => x.IdArticulo == articulo.Id)
+                                    .ToList();
 
             if (imagenes.Count > 0)
             {
@@ -60,23 +60,9 @@ namespace TPWinForm_equipo_B
 
             try
             {
-                string url = imagenes[indiceImagen].ImagenUrl;
+                picImagen.Load(imagenes[indiceImagen].ImagenUrl);
 
-                using (WebClient cliente = new WebClient())
-                {
-                    byte[] datos = cliente.DownloadData(url);
-
-                    using (MemoryStream memoria = new MemoryStream(datos))
-                    {
-                        using (Image imagen = Image.FromStream(memoria))
-                        {
-                            picImagen.Image = new Bitmap(imagen);
-                        }
-                    }
-                }
-
-                lblContadorImagenes.Text =
-                    "Imagen " + (indiceImagen + 1) + " de " + imagenes.Count;
+                lblContadorImagenes.Text = "Imagen " + (indiceImagen + 1) + " / " + imagenes.Count;
 
                 btnAnterior.Enabled = indiceImagen > 0;
                 btnSiguiente.Enabled = indiceImagen < imagenes.Count - 1;
@@ -84,9 +70,7 @@ namespace TPWinForm_equipo_B
             catch
             {
                 picImagen.Image = null;
-
-                lblContadorImagenes.Text =
-                    "No se pudo cargar la imagen";
+                lblContadorImagenes.Text = "No se pudo cargar la imagen";
             }
         }
 
