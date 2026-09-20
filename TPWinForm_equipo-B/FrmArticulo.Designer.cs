@@ -43,6 +43,9 @@ namespace TPWinForm_equipo_B
             this.btnGuardar = new System.Windows.Forms.Button();
             this.lblGaleria = new System.Windows.Forms.Label();
             this.flpGaleria = new System.Windows.Forms.FlowLayoutPanel();
+            this.txtImagenUrl = new System.Windows.Forms.TextBox();
+            this.btnAgregarImagen = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             //
             // lblCodigo
@@ -156,6 +159,16 @@ namespace TPWinForm_equipo_B
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             //
+            // btnCancelar
+            //
+            this.btnCancelar.Location = new System.Drawing.Point(250, 310);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(100, 30);
+            this.btnCancelar.TabIndex = 15;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            //
             // lblGaleria
             //
             this.lblGaleria.AutoSize = true;
@@ -174,11 +187,31 @@ namespace TPWinForm_equipo_B
             this.flpGaleria.Size = new System.Drawing.Size(260, 290);
             this.flpGaleria.TabIndex = 14;
             //
+            // txtImagenUrl
+            //
+            this.txtImagenUrl.Location = new System.Drawing.Point(370, 348);
+            this.txtImagenUrl.Name = "txtImagenUrl";
+            this.txtImagenUrl.Size = new System.Drawing.Size(170, 20);
+            this.txtImagenUrl.TabIndex = 16;
+            //
+            // btnAgregarImagen
+            //
+            this.btnAgregarImagen.Location = new System.Drawing.Point(548, 346);
+            this.btnAgregarImagen.Name = "btnAgregarImagen";
+            this.btnAgregarImagen.Size = new System.Drawing.Size(82, 24);
+            this.btnAgregarImagen.TabIndex = 17;
+            this.btnAgregarImagen.Text = "Agregar";
+            this.btnAgregarImagen.UseVisualStyleBackColor = true;
+            this.btnAgregarImagen.Click += new System.EventHandler(this.btnAgregarImagen_Click);
+            //
             // FrmArticulo
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(660, 360);
+            this.ClientSize = new System.Drawing.Size(660, 390);
+            this.Controls.Add(this.btnAgregarImagen);
+            this.Controls.Add(this.txtImagenUrl);
+            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.flpGaleria);
             this.Controls.Add(this.lblGaleria);
             this.Controls.Add(this.btnGuardar);
@@ -218,5 +251,8 @@ namespace TPWinForm_equipo_B
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Label lblGaleria;
         private System.Windows.Forms.FlowLayoutPanel flpGaleria;
+        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.TextBox txtImagenUrl;
+        private System.Windows.Forms.Button btnAgregarImagen;
     }
 }

@@ -43,6 +43,8 @@ namespace TPWinForm_equipo_B
 
         private void CargarGaleria()
         {
+            flpGaleria.Controls.Clear();
+
             if (articulo == null || articulo.Id == 0)
                 return;
 
@@ -56,6 +58,8 @@ namespace TPWinForm_equipo_B
                 miniatura.Height = 80;
                 miniatura.SizeMode = PictureBoxSizeMode.Zoom;
                 miniatura.Margin = new Padding(5);
+                miniatura.Tag = imagen;
+                miniatura.DoubleClick += Miniatura_DoubleClick;
 
                 try
                 {
@@ -76,6 +80,51 @@ namespace TPWinForm_equipo_B
 
                 flpGaleria.Controls.Add(miniatura);
             }
+        }
+
+        private void Miniatura_DoubleClick(object sender, EventArgs e)
+        {
+            PictureBox miniatura = (PictureBox)sender;
+            Imagen imagen = (Imagen)miniatura.Tag;
+
+            string nuevaUrl = Microsoft.VisualBasic.Interaction.InputBox("Nueva URL de la imagen:", "Modificar imagen", imagen.ImagenUrl);
+
+            if (nuevaUrl == "")
+                return;
+
+            imagen.ImagenUrl = nuevaUrl;
+
+            ImagenRepositorio repo = new ImagenRepositorio();
+            repo.Modificar(imagen);
+
+            CargarGaleria();
+        }
+
+        private void btnAgregarImagen_Click(object sender, EventArgs e)
+        {
+            if (articulo == null || articulo.Id == 0)
+            {
+                MessageBox.Show("Primero guardá el artículo para poder agregarle imágenes.");
+                return;
+            }
+
+            if (txtImagenUrl.Text.Trim() == "")
+                return;
+
+            Imagen nueva = new Imagen();
+            nueva.IdArticulo = articulo.Id;
+            nueva.ImagenUrl = txtImagenUrl.Text.Trim();
+
+            ImagenRepositorio repo = new ImagenRepositorio();
+            repo.Agregar(nueva);
+
+            txtImagenUrl.Text = "";
+            CargarGaleria();
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
 
         private void CargarCombos()
