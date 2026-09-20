@@ -44,13 +44,14 @@
             this.dgvArticulos = new System.Windows.Forms.DataGridView();
             this.btnAnterior = new System.Windows.Forms.Button();
             this.btnSiguiente = new System.Windows.Forms.Button();
-            this.pbxArticulo = new System.Windows.Forms.PictureBox();
             this.lblImagen = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnAgregarArticuloNuevo = new System.Windows.Forms.Button();
+            this.btnModificar = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnVerDetalle = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
+            this.pbxArticulo = new System.Windows.Forms.PictureBox();
+            this.btnRestablecer = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvArticulos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxArticulo)).BeginInit();
@@ -169,13 +170,14 @@
             // btnBuscar
             // 
             this.btnBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.btnBuscar.Location = new System.Drawing.Point(1024, 47);
+            this.btnBuscar.Location = new System.Drawing.Point(1024, 46);
             this.btnBuscar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(195, 34);
+            this.btnBuscar.Size = new System.Drawing.Size(157, 34);
             this.btnBuscar.TabIndex = 5;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
+            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // dgvArticulos
             // 
@@ -226,7 +228,7 @@
             this.btnAnterior.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnAnterior.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAnterior.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnAnterior.Location = new System.Drawing.Point(1037, 438);
+            this.btnAnterior.Location = new System.Drawing.Point(1037, 435);
             this.btnAnterior.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAnterior.Name = "btnAnterior";
             this.btnAnterior.Size = new System.Drawing.Size(65, 42);
@@ -240,7 +242,7 @@
             this.btnSiguiente.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.btnSiguiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSiguiente.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnSiguiente.Location = new System.Drawing.Point(1300, 438);
+            this.btnSiguiente.Location = new System.Drawing.Point(1300, 435);
             this.btnSiguiente.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSiguiente.Name = "btnSiguiente";
             this.btnSiguiente.Size = new System.Drawing.Size(73, 42);
@@ -249,79 +251,70 @@
             this.btnSiguiente.UseVisualStyleBackColor = false;
             this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
             // 
-            // pbxArticulo
-            // 
-            this.pbxArticulo.ErrorImage = global::TPWinForm_equipo_B.Properties.Resources.Imagen_no_disponible;
-            this.pbxArticulo.InitialImage = global::TPWinForm_equipo_B.Properties.Resources.Phoenix1;
-            this.pbxArticulo.Location = new System.Drawing.Point(1024, 106);
-            this.pbxArticulo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.pbxArticulo.Name = "pbxArticulo";
-            this.pbxArticulo.Size = new System.Drawing.Size(349, 314);
-            this.pbxArticulo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbxArticulo.TabIndex = 7;
-            this.pbxArticulo.TabStop = false;
-            // 
             // lblImagen
             // 
             this.lblImagen.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblImagen.Location = new System.Drawing.Point(1127, 447);
+            this.lblImagen.Location = new System.Drawing.Point(1127, 444);
             this.lblImagen.Name = "lblImagen";
             this.lblImagen.Size = new System.Drawing.Size(148, 25);
             this.lblImagen.TabIndex = 9;
             this.lblImagen.Text = "Imagen 1/3";
             this.lblImagen.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // button1
+            // btnAgregarArticuloNuevo
             // 
-            this.button1.BackColor = System.Drawing.Color.ForestGreen;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(345, 578);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(324, 52);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "+ Agregar artículo nuevo";
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnAgregarArticuloNuevo.BackColor = System.Drawing.Color.ForestGreen;
+            this.btnAgregarArticuloNuevo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.btnAgregarArticuloNuevo.ForeColor = System.Drawing.Color.White;
+            this.btnAgregarArticuloNuevo.Location = new System.Drawing.Point(345, 578);
+            this.btnAgregarArticuloNuevo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnAgregarArticuloNuevo.Name = "btnAgregarArticuloNuevo";
+            this.btnAgregarArticuloNuevo.Size = new System.Drawing.Size(324, 52);
+            this.btnAgregarArticuloNuevo.TabIndex = 5;
+            this.btnAgregarArticuloNuevo.Text = "+ Agregar artículo nuevo";
+            this.btnAgregarArticuloNuevo.UseVisualStyleBackColor = false;
             // 
-            // button2
+            // btnModificar
             // 
-            this.button2.BackColor = System.Drawing.Color.Goldenrod;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(17, 527);
-            this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(195, 44);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Modificar";
-            this.button2.UseVisualStyleBackColor = false;
+            this.btnModificar.BackColor = System.Drawing.Color.Goldenrod;
+            this.btnModificar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.btnModificar.ForeColor = System.Drawing.Color.White;
+            this.btnModificar.Location = new System.Drawing.Point(17, 527);
+            this.btnModificar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnModificar.Name = "btnModificar";
+            this.btnModificar.Size = new System.Drawing.Size(195, 44);
+            this.btnModificar.TabIndex = 5;
+            this.btnModificar.Text = "Modificar";
+            this.btnModificar.UseVisualStyleBackColor = false;
+            this.btnModificar.Click += new System.EventHandler(this.btnModificar_Click);
             // 
-            // button3
+            // btnEliminar
             // 
-            this.button3.BackColor = System.Drawing.Color.Firebrick;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(801, 527);
-            this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(195, 44);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "Eliminar";
-            this.button3.UseVisualStyleBackColor = false;
+            this.btnEliminar.BackColor = System.Drawing.Color.Firebrick;
+            this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.btnEliminar.ForeColor = System.Drawing.Color.White;
+            this.btnEliminar.Location = new System.Drawing.Point(801, 527);
+            this.btnEliminar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(195, 44);
+            this.btnEliminar.TabIndex = 5;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = false;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
-            // button4
+            // btnVerDetalle
             // 
-            this.button4.BackColor = System.Drawing.Color.SlateGray;
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
-            this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(409, 527);
-            this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(195, 44);
-            this.button4.TabIndex = 5;
-            this.button4.Text = "Ver Detalle";
-            this.button4.UseVisualStyleBackColor = false;
+            this.btnVerDetalle.BackColor = System.Drawing.Color.SlateGray;
+            this.btnVerDetalle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.btnVerDetalle.ForeColor = System.Drawing.Color.White;
+            this.btnVerDetalle.Location = new System.Drawing.Point(409, 527);
+            this.btnVerDetalle.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnVerDetalle.Name = "btnVerDetalle";
+            this.btnVerDetalle.Size = new System.Drawing.Size(195, 44);
+            this.btnVerDetalle.TabIndex = 5;
+            this.btnVerDetalle.Text = "Ver Detalle";
+            this.btnVerDetalle.UseVisualStyleBackColor = false;
+            this.btnVerDetalle.Click += new System.EventHandler(this.btnVerDetalle_Click);
             // 
             // btnSalir
             // 
@@ -337,6 +330,30 @@
             this.btnSalir.UseVisualStyleBackColor = false;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
+            // pbxArticulo
+            // 
+            this.pbxArticulo.ErrorImage = global::TPWinForm_equipo_B.Properties.Resources.Imagen_no_disponible;
+            this.pbxArticulo.InitialImage = global::TPWinForm_equipo_B.Properties.Resources.Phoenix1;
+            this.pbxArticulo.Location = new System.Drawing.Point(1024, 106);
+            this.pbxArticulo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.pbxArticulo.Name = "pbxArticulo";
+            this.pbxArticulo.Size = new System.Drawing.Size(349, 314);
+            this.pbxArticulo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbxArticulo.TabIndex = 7;
+            this.pbxArticulo.TabStop = false;
+            // 
+            // btnRestablecer
+            // 
+            this.btnRestablecer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
+            this.btnRestablecer.Location = new System.Drawing.Point(1221, 47);
+            this.btnRestablecer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnRestablecer.Name = "btnRestablecer";
+            this.btnRestablecer.Size = new System.Drawing.Size(152, 34);
+            this.btnRestablecer.TabIndex = 5;
+            this.btnRestablecer.Text = "Limpiar";
+            this.btnRestablecer.UseVisualStyleBackColor = true;
+            this.btnRestablecer.Click += new System.EventHandler(this.btnRestablecer_Click);
+            // 
             // frmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -348,11 +365,12 @@
             this.Controls.Add(this.btnAnterior);
             this.Controls.Add(this.pbxArticulo);
             this.Controls.Add(this.dgvArticulos);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.btnVerDetalle);
             this.Controls.Add(this.btnSalir);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnEliminar);
+            this.Controls.Add(this.btnModificar);
+            this.Controls.Add(this.btnAgregarArticuloNuevo);
+            this.Controls.Add(this.btnRestablecer);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.tbFiltro);
             this.Controls.Add(this.cbCriterio);
@@ -394,11 +412,12 @@
         private System.Windows.Forms.Button btnAnterior;
         private System.Windows.Forms.Button btnSiguiente;
         private System.Windows.Forms.Label lblImagen;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnAgregarArticuloNuevo;
+        private System.Windows.Forms.Button btnModificar;
+        private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.Button btnVerDetalle;
         private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Button btnRestablecer;
     }
 }
 

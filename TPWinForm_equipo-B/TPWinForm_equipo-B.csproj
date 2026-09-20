@@ -51,6 +51,12 @@
     <Compile Include="Categoria.cs" />
     <Compile Include="CategoriaRepositorio.cs" />
     <Compile Include="Conexion.cs" />
+    <Compile Include="frmConfirmaEliminacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmConfirmaEliminacion.Designer.cs">
+      <DependentUpon>frmConfirmaEliminacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmDetalleArticulo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +88,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Validaciones.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmConfirmaEliminacion.resx">
+      <DependentUpon>frmConfirmaEliminacion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmDetalleArticulo.resx">
       <DependentUpon>FrmDetalleArticulo.cs</DependentUpon>
     </EmbeddedResource>

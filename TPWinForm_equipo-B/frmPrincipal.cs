@@ -384,7 +384,7 @@ namespace TPWinForm_equipo_B
         }
         private Image ObtenerImagenOptimizada(string url)
         {
-            // 1. Si la imagen ya fue descargada antes, se devuelve inmediatamente desde la memoria
+            // Si la imagen ya fue descargada, se devuelve desde la memoria
             if (cacheImagenes.ContainsKey(url))
             {
                 return cacheImagenes[url];
@@ -392,40 +392,178 @@ namespace TPWinForm_equipo_B
 
             try
             {
-                // 2. Descargar la imagen de internet
-                System.Net.WebRequest peticion = System.Net.WebRequest.Create(url);
-                using (System.Net.WebResponse respuesta = peticion.GetResponse())
-                using (System.IO.Stream flujo = respuesta.GetResponseStream())
+                // Descarga de imagen utilizando la misma estructura que FrmArticulo
+                using (System.Net.WebClient cliente = new System.Net.WebClient())
                 {
-                    Image imgOriginal = Image.FromStream(flujo);
-
-                    // 3. Lógica para achicar manteniendo la proporción (Aspect Ratio)
-                    int tamañoMaximo = 400;
-                    int nuevoAncho = imgOriginal.Width;
-                    int nuevoAlto = imgOriginal.Height;
-
-                    // Solo se achica si la imagen es más grande que el límite
-                    if (imgOriginal.Width > tamañoMaximo || imgOriginal.Height > tamañoMaximo)
+                    byte[] datos = cliente.DownloadData(url);
+                    using (System.IO.MemoryStream memoria = new System.IO.MemoryStream(datos))
                     {
-                        float proporcion = Math.Min((float)tamañoMaximo / imgOriginal.Width, (float)tamañoMaximo / imgOriginal.Height);
-                        nuevoAncho = (int)(imgOriginal.Width * proporcion);
-                        nuevoAlto = (int)(imgOriginal.Height * proporcion);
+                        Image imgOriginal = Image.FromStream(memoria);
+
+                        // Lógica de redimensionamiento para proteger el caché
+                        int tamañoMaximo = 400;
+                        int nuevoAncho = imgOriginal.Width;
+                        int nuevoAlto = imgOriginal.Height;
+
+                        if (imgOriginal.Width > tamañoMaximo || imgOriginal.Height > tamañoMaximo)
+                        {
+                            float proporcion = Math.Min((float)tamañoMaximo / imgOriginal.Width, (float)tamañoMaximo / imgOriginal.Height);
+                            nuevoAncho = (int)(imgOriginal.Width * proporcion);
+                            nuevoAlto = (int)(imgOriginal.Height * proporcion);
+                        }
+
+                        Bitmap imgReducida = new Bitmap(imgOriginal, nuevoAncho, nuevoAlto);
+                        cacheImagenes.Add(url, imgReducida);
+
+                        return imgReducida;
                     }
-
-                    // Crear el nuevo mapa de bits reducido
-                    Bitmap imgReducida = new Bitmap(imgOriginal, nuevoAncho, nuevoAlto);
-
-                    // 4. Guardar en el caché para futuros usos
-                    cacheImagenes.Add(url, imgReducida);
-
-                    return imgReducida;
                 }
             }
-            catch (Exception)
+            catch
             {
-                // Si hay un error de conexión, URL rota o tiempo de espera agotado, devuelve la imagen por defecto
                 return imagenPorDefecto;
             }
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            // Validar que haya una fila seleccionada en la grilla
+            if (dgvArticulos.CurrentRow != null)
+            {
+                // Extraer el objeto Articulo de la fila actual
+                Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+
+                // Instanciar el formulario de modificación pasando el artículo por parámetro
+                FrmArticulo frmModificar = new FrmArticulo(seleccionado);
+
+                // Abrir el formulario de manera modal (restringe el uso de la ventana principal hasta que se cierre)
+                frmModificar.ShowDialog();
+
+                // Una vez que el formulario se cierra, recargar la grilla para reflejar los cambios
+                ArticuloRepositorio repo = new ArticuloRepositorio();
+                dgvArticulos.DataSource = repo.Listar();
+                OcultarColumnas();
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione un artículo de la lista para modificar.", "Selección requerida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btnVerDetalle_Click(object sender, EventArgs e)
+        {
+            // Validar que haya una fila seleccionada
+            if (dgvArticulos.CurrentRow != null)
+            {
+                // Obtener el artículo seleccionado
+                Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+
+                // Instanciar y mostrar el formulario de detalle de forma modal
+                FrmDetalleArticulo frmDetalle = new FrmDetalleArticulo(seleccionado);
+                frmDetalle.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione un artículo de la lista para ver el detalle.", "Selección requerida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btnEliminar_Click(object sender, EventArgs e)
+        {
+            // Validar que haya un artículo seleccionado
+            if (dgvArticulos.CurrentRow != null)
+            {
+                Articulo seleccionado = (Articulo)dgvArticulos.CurrentRow.DataBoundItem;
+
+                // Instanciar el formulario de confirmación pasándole el artículo
+                frmConfirmaEliminacion frmConfirmacion = new frmConfirmaEliminacion(seleccionado);
+
+                // Si el resultado es OK (se eliminó o se eligió modificar y se guardó), refrescar la grilla
+                if (frmConfirmacion.ShowDialog() == DialogResult.OK)
+                {
+                    ArticuloRepositorio repo = new ArticuloRepositorio();
+                    dgvArticulos.DataSource = repo.Listar();
+                    OcultarColumnas();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Por favor, seleccione un artículo de la lista para eliminar.", "Selección requerida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // 1. Validar que los ComboBox tengan una selección real y no el texto gris
+                if (cbCampo.SelectedIndex < 0 || cbCampo.Text == "Campo...")
+                {
+                    MessageBox.Show("Por favor, seleccione un campo para realizar la búsqueda.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                if (cbCriterio.SelectedIndex < 0 || cbCriterio.Text == "Criterio...")
+                {
+                    MessageBox.Show("Por favor, seleccione un criterio para realizar la búsqueda.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                string campo = cbCampo.SelectedItem.ToString();
+                string criterio = cbCriterio.SelectedItem.ToString();
+                string filtro = tbFiltro.Text.Trim();
+
+                // 2. Validar que el TextBox tenga contenido válido
+                if (string.IsNullOrWhiteSpace(filtro) || filtro == "Filtro...")
+                {
+                    MessageBox.Show("Por favor, ingrese un valor para filtrar.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // 3. Validaciones específicas según el campo seleccionado
+                if (campo == "Precio")
+                {
+                    // Reemplazar coma por punto para evitar errores de sintaxis en la consulta SQL
+                    filtro = filtro.Replace(",", ".");
+
+                    // Validar que el texto sea un número
+                    if (!decimal.TryParse(filtro, System.Globalization.NumberStyles.Any, System.Globalization.CultureInfo.InvariantCulture, out _))
+                    {
+                        MessageBox.Show("Para filtrar por precio, debe ingresar únicamente valores numéricos.", "Validación de tipo de dato", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                }
+
+                // 4. Ejecutar la consulta en la base de datos
+                ArticuloRepositorio repo = new ArticuloRepositorio();
+                dgvArticulos.DataSource = repo.Filtrar(campo, criterio, filtro);
+
+                // 5. Restablecer la vista de la grilla
+                OcultarColumnas();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Se produjo un error al intentar filtrar los datos: " + ex.Message, "Error del sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnRestablecer_Click(object sender, EventArgs e)
+        {
+            ArticuloRepositorio repo = new ArticuloRepositorio();
+            dgvArticulos.DataSource = repo.Listar();
+            OcultarColumnas();
+
+            // Restaurar los placeholders
+            cbCampo.SelectedIndex = -1;
+            cbCampo.Text = "Campo...";
+            cbCampo.ForeColor = Color.Gray;
+
+            cbCriterio.Items.Clear();
+            cbCriterio.Text = "Criterio...";
+            cbCriterio.ForeColor = Color.Gray;
+
+            tbFiltro.Text = "Filtro...";
+            tbFiltro.ForeColor = Color.Gray;
         }
     }
 
