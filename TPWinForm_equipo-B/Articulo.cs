@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TPWinForm_equipo_B
 {
-    public class Articulo
+    public class Articulo : IValidable
     {
         public Articulo() 
         {
@@ -36,5 +36,21 @@ namespace TPWinForm_equipo_B
             return Descripcion;
         }
 
+        public bool EsValido()
+        {
+            if (!Validaciones.TextoValido(Codigo))
+                return false;
+
+            if (!Validaciones.TextoValido(Nombre))
+                return false;
+
+            if (!Validaciones.PrecioValido(Precio))
+                return false;
+
+            if (Marca == null || Categoria == null)
+                return false;
+
+            return true;
+        }
     }
 }

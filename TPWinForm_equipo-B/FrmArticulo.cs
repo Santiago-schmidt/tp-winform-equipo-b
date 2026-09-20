@@ -142,7 +142,12 @@ namespace TPWinForm_equipo_B
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            ArticuloRepositorio repo = new ArticuloRepositorio();
+            decimal precio;
+            if (!decimal.TryParse(txtPrecio.Text, out precio))
+            {
+                MessageBox.Show("El precio tiene que ser un número.");
+                return;
+            }
 
             if (articulo == null)
             {
@@ -152,9 +157,17 @@ namespace TPWinForm_equipo_B
             articulo.Codigo = txtCodigo.Text;
             articulo.Nombre = txtNombre.Text;
             articulo.Descripcion = txtDescripcion.Text;
-            articulo.Precio = decimal.Parse(txtPrecio.Text);
+            articulo.Precio = precio;
             articulo.Marca = (Marca)cmbMarca.SelectedItem;
             articulo.Categoria = (Categoria)cmbCategoria.SelectedItem;
+
+            if (!articulo.EsValido())
+            {
+                MessageBox.Show("Faltan datos: revisá código, nombre, precio, marca y categoría.");
+                return;
+            }
+
+            ArticuloRepositorio repo = new ArticuloRepositorio();
 
             if (articulo.Id == 0)
             {

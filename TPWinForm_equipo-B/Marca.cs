@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TPWinForm_equipo_B
 {
-    public class Marca
+    public class Marca : IValidable
     {
         public int Id { get; set; }
         public string Descripcion { get; set; }
@@ -15,6 +15,11 @@ namespace TPWinForm_equipo_B
         {
             // Si la descripción es nula, devuelve "Sin asignar"
             return Descripcion ?? "Sin asignar";
+        }
+
+        public bool EsValido()
+        {
+            return Validaciones.TextoValido(Descripcion) && Validaciones.LongitudValida(Descripcion, 50);
         }
     }
 }
