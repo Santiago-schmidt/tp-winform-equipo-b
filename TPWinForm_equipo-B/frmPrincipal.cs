@@ -17,7 +17,6 @@ namespace TPWinForm_equipo_B
         private bool ordenAscendente = true;
         private List<Imagen> listaImagenesActual;
         private int indiceImagenActual = 0;
-        private Image imagenPorDefecto;
         private CursorFlecha modificadorCursorCampo;
         private CursorFlecha modificadorCursorCriterio;
         
@@ -40,6 +39,9 @@ namespace TPWinForm_equipo_B
 
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
+            // Asignar imagen inicial de inicio desde los recursos
+            pbxArticulo.Image = Properties.Resources.Phoenix1;
+
             // 1. Cargar los datos
             ArticuloRepositorio repo = new ArticuloRepositorio();
             dgvArticulos.DataSource = repo.Listar();
@@ -60,6 +62,7 @@ namespace TPWinForm_equipo_B
             if (dgvArticulos.Columns["CategoriaDescripcion"] != null)
                 dgvArticulos.Columns["CategoriaDescripcion"].Visible = false;
 
+            
             cbCampo.Items.Add("Precio");
             cbCampo.Items.Add("Nombre");
             cbCampo.Items.Add("Descripción");
@@ -69,7 +72,7 @@ namespace TPWinForm_equipo_B
 
             cbCriterio.Text = "Criterio...";
             cbCriterio.ForeColor = Color.Gray;
-            
+
             IntPtr editCampo = GetWindow(cbCampo.Handle, GW_CHILD);
             IntPtr editCriterio = GetWindow(cbCriterio.Handle, GW_CHILD);
 
@@ -79,11 +82,6 @@ namespace TPWinForm_equipo_B
 
             // Quitar el foco inicial a los ComboBox
             this.ActiveControl = dgvArticulos;
-
-            imagenPorDefecto = pbxArticulo.Image;
-
-
-
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -317,26 +315,25 @@ namespace TPWinForm_equipo_B
         }
         private void ActualizarInterfazImagen()
         {
-            
-                if (listaImagenesActual == null || listaImagenesActual.Count == 0)
-                {
-                    pbxArticulo.Image = imagenPorDefecto;
-                    lblImagen.Text = "Sin Imágenes";
-                    btnAnterior.Enabled = false;
-                    btnSiguiente.Enabled = false;
-                    return;
-                }
+            if (listaImagenesActual == null || listaImagenesActual.Count == 0)
+            {
+                // Asignar la imagen de error desde los recursos
+                pbxArticulo.Image = Properties.Resources.Imagen_no_disponible;
+                lblImagen.Text = "Sin Imágenes";
+                btnAnterior.Enabled = false;
+                btnSiguiente.Enabled = false;
+                return;
+            }
 
-                // Utilizar el sistema de caché en lugar de cargar directamente del PictureBox
-                string urlActual = listaImagenesActual[indiceImagenActual].ImagenUrl;
-                pbxArticulo.Image = ObtenerImagenOptimizada(urlActual);
+            // Utilizar el sistema de caché en lugar de cargar directamente del PictureBox
+            string urlActual = listaImagenesActual[indiceImagenActual].ImagenUrl;
+            pbxArticulo.Image = ObtenerImagenOptimizada(urlActual);
 
-                lblImagen.Text = $"Imagen {indiceImagenActual + 1}/{listaImagenesActual.Count}";
+            lblImagen.Text = $"Imagen {indiceImagenActual + 1}/{listaImagenesActual.Count}";
 
-                bool habilitarBotones = listaImagenesActual.Count > 1;
-                btnAnterior.Enabled = habilitarBotones;
-                btnSiguiente.Enabled = habilitarBotones;
-            
+            bool habilitarBotones = listaImagenesActual.Count > 1;
+            btnAnterior.Enabled = habilitarBotones;
+            btnSiguiente.Enabled = habilitarBotones;
         }
 
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
@@ -424,7 +421,8 @@ namespace TPWinForm_equipo_B
             }
             catch
             {
-                return imagenPorDefecto;
+                // Retornar imagen de error si la URL está rota o hay fallo de red
+                return Properties.Resources.Imagen_no_disponible;
             }
         }
 
@@ -595,6 +593,13 @@ namespace TPWinForm_equipo_B
         {
             frmMarcasYCategorias frmCategorias = new frmMarcasYCategorias(TipoAdministracion.Categorias);
             frmCategorias.ShowDialog();
+        }
+
+        private void dgvArticulos_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            // Limpia la selección automáticamente cada vez que la grilla recarga sus datos
+            dgvArticulos.CurrentCell = null;
+            dgvArticulos.ClearSelection();
         }
     }
 

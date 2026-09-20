@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.archivoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -70,7 +70,7 @@
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
             this.menuStrip1.Size = new System.Drawing.Size(1397, 32);
-            this.menuStrip1.TabIndex = 0;
+            this.menuStrip1.TabIndex = 12;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // archivoToolStripMenuItem
@@ -100,14 +100,14 @@
             // deMarcasToolStripMenuItem
             // 
             this.deMarcasToolStripMenuItem.Name = "deMarcasToolStripMenuItem";
-            this.deMarcasToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
+            this.deMarcasToolStripMenuItem.Size = new System.Drawing.Size(177, 28);
             this.deMarcasToolStripMenuItem.Text = "Marcas";
             this.deMarcasToolStripMenuItem.Click += new System.EventHandler(this.deMarcasToolStripMenuItem_Click);
             // 
             // categoríasToolStripMenuItem
             // 
             this.categoríasToolStripMenuItem.Name = "categoríasToolStripMenuItem";
-            this.categoríasToolStripMenuItem.Size = new System.Drawing.Size(224, 28);
+            this.categoríasToolStripMenuItem.Size = new System.Drawing.Size(177, 28);
             this.categoríasToolStripMenuItem.Text = "Categorías";
             this.categoríasToolStripMenuItem.Click += new System.EventHandler(this.categoríasToolStripMenuItem_Click);
             // 
@@ -118,7 +118,7 @@
             this.label1.Location = new System.Drawing.Point(12, 57);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(116, 25);
-            this.label1.TabIndex = 1;
+            this.label1.TabIndex = 13;
             this.label1.Text = "Busqueda:";
             // 
             // cbCampo
@@ -130,7 +130,7 @@
             this.cbCampo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbCampo.Name = "cbCampo";
             this.cbCampo.Size = new System.Drawing.Size(193, 33);
-            this.cbCampo.TabIndex = 2;
+            this.cbCampo.TabIndex = 0;
             this.cbCampo.Text = "Campo...";
             this.cbCampo.SelectedIndexChanged += new System.EventHandler(this.cbCampo_SelectedIndexChanged);
             this.cbCampo.Click += new System.EventHandler(this.cbCampo_Click);
@@ -148,7 +148,7 @@
             this.cbCriterio.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbCriterio.Name = "cbCriterio";
             this.cbCriterio.Size = new System.Drawing.Size(193, 33);
-            this.cbCriterio.TabIndex = 3;
+            this.cbCriterio.TabIndex = 1;
             this.cbCriterio.Text = "Criterio...";
             this.cbCriterio.Click += new System.EventHandler(this.cbCriterio_Click);
             this.cbCriterio.Enter += new System.EventHandler(this.cbCriterio_Enter);
@@ -164,7 +164,7 @@
             this.tbFiltro.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbFiltro.Name = "tbFiltro";
             this.tbFiltro.Size = new System.Drawing.Size(447, 32);
-            this.tbFiltro.TabIndex = 4;
+            this.tbFiltro.TabIndex = 2;
             this.tbFiltro.Text = " Filtro...";
             this.tbFiltro.Enter += new System.EventHandler(this.tbFiltro_Enter);
             this.tbFiltro.Leave += new System.EventHandler(this.tbFiltro_Leave);
@@ -176,7 +176,7 @@
             this.btnBuscar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnBuscar.Name = "btnBuscar";
             this.btnBuscar.Size = new System.Drawing.Size(157, 34);
-            this.btnBuscar.TabIndex = 5;
+            this.btnBuscar.TabIndex = 3;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
@@ -190,23 +190,23 @@
             this.dgvArticulos.BackgroundColor = System.Drawing.Color.White;
             this.dgvArticulos.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.dgvArticulos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.Navy;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvArticulos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Navy;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvArticulos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvArticulos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvArticulos.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvArticulos.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvArticulos.EnableHeadersVisualStyles = false;
             this.dgvArticulos.Location = new System.Drawing.Point(17, 106);
             this.dgvArticulos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -218,11 +218,12 @@
             this.dgvArticulos.RowTemplate.Height = 24;
             this.dgvArticulos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvArticulos.Size = new System.Drawing.Size(979, 416);
-            this.dgvArticulos.TabIndex = 6;
+            this.dgvArticulos.TabIndex = 14;
             this.dgvArticulos.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgvArticulos_CellFormatting);
             this.dgvArticulos.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvArticulos_CellMouseEnter);
             this.dgvArticulos.CellMouseLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvArticulos_CellMouseLeave);
             this.dgvArticulos.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvArticulos_ColumnHeaderMouseClick);
+            this.dgvArticulos.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvArticulos_DataBindingComplete);
             this.dgvArticulos.SelectionChanged += new System.EventHandler(this.dgvArticulos_SelectionChanged);
             // 
             // btnAnterior
@@ -234,7 +235,7 @@
             this.btnAnterior.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAnterior.Name = "btnAnterior";
             this.btnAnterior.Size = new System.Drawing.Size(65, 42);
-            this.btnAnterior.TabIndex = 8;
+            this.btnAnterior.TabIndex = 9;
             this.btnAnterior.Text = "<";
             this.btnAnterior.UseVisualStyleBackColor = false;
             this.btnAnterior.Click += new System.EventHandler(this.btnAnterior_Click);
@@ -248,7 +249,7 @@
             this.btnSiguiente.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSiguiente.Name = "btnSiguiente";
             this.btnSiguiente.Size = new System.Drawing.Size(73, 42);
-            this.btnSiguiente.TabIndex = 8;
+            this.btnSiguiente.TabIndex = 10;
             this.btnSiguiente.Text = ">";
             this.btnSiguiente.UseVisualStyleBackColor = false;
             this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
@@ -259,7 +260,7 @@
             this.lblImagen.Location = new System.Drawing.Point(1127, 444);
             this.lblImagen.Name = "lblImagen";
             this.lblImagen.Size = new System.Drawing.Size(148, 25);
-            this.lblImagen.TabIndex = 9;
+            this.lblImagen.TabIndex = 15;
             this.lblImagen.Text = "Imagen 1/3";
             this.lblImagen.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -272,7 +273,7 @@
             this.btnAgregarArticuloNuevo.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnAgregarArticuloNuevo.Name = "btnAgregarArticuloNuevo";
             this.btnAgregarArticuloNuevo.Size = new System.Drawing.Size(324, 52);
-            this.btnAgregarArticuloNuevo.TabIndex = 5;
+            this.btnAgregarArticuloNuevo.TabIndex = 8;
             this.btnAgregarArticuloNuevo.Text = "+ Agregar artículo nuevo";
             this.btnAgregarArticuloNuevo.UseVisualStyleBackColor = false;
             this.btnAgregarArticuloNuevo.Click += new System.EventHandler(this.btnAgregarArticuloNuevo_Click);
@@ -300,7 +301,7 @@
             this.btnEliminar.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(195, 44);
-            this.btnEliminar.TabIndex = 5;
+            this.btnEliminar.TabIndex = 7;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = false;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
@@ -314,7 +315,7 @@
             this.btnVerDetalle.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnVerDetalle.Name = "btnVerDetalle";
             this.btnVerDetalle.Size = new System.Drawing.Size(195, 44);
-            this.btnVerDetalle.TabIndex = 5;
+            this.btnVerDetalle.TabIndex = 6;
             this.btnVerDetalle.Text = "Ver Detalle";
             this.btnVerDetalle.UseVisualStyleBackColor = false;
             this.btnVerDetalle.Click += new System.EventHandler(this.btnVerDetalle_Click);
@@ -328,7 +329,7 @@
             this.btnSalir.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(101, 44);
-            this.btnSalir.TabIndex = 5;
+            this.btnSalir.TabIndex = 11;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = false;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
@@ -352,7 +353,7 @@
             this.btnRestablecer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnRestablecer.Name = "btnRestablecer";
             this.btnRestablecer.Size = new System.Drawing.Size(152, 34);
-            this.btnRestablecer.TabIndex = 5;
+            this.btnRestablecer.TabIndex = 4;
             this.btnRestablecer.Text = "Limpiar";
             this.btnRestablecer.UseVisualStyleBackColor = true;
             this.btnRestablecer.Click += new System.EventHandler(this.btnRestablecer_Click);
