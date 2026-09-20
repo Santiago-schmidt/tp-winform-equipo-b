@@ -17,12 +17,11 @@ namespace TPWinForm_equipo_B
         {
             InitializeComponent();
 
+            btnCerrar.TabIndex = 0;
             this.articulo = articulo;
             indiceImagen = 0;
-
             CargarDatos();
             CargarImagenes();
-            btnCerrar.Focus();
         }
         private void CargarDatos()
         {
@@ -32,7 +31,6 @@ namespace TPWinForm_equipo_B
             lblCategoria.Text = articulo.Categoria?.Descripcion ?? "";
             lblPrecio.Text = articulo.Precio.ToString("C");
             txtDescripcion.Text = articulo.Descripcion ?? "";
-            btnSiguiente.Focus();
         }
         private void CargarImagenes()
         {
@@ -97,6 +95,11 @@ namespace TPWinForm_equipo_B
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void FrmDetalleArticulo_Load(object sender, EventArgs e)
+        {
+            btnCerrar.Focus();
         }
     }
 }

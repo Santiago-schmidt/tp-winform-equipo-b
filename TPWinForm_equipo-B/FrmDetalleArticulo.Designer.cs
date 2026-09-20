@@ -115,9 +115,9 @@
             this.lblPrecio.Location = new System.Drawing.Point(268, 258);
             this.lblPrecio.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblPrecio.Name = "lblPrecio";
-            this.lblPrecio.Size = new System.Drawing.Size(77, 27);
+            this.lblPrecio.Size = new System.Drawing.Size(79, 27);
             this.lblPrecio.TabIndex = 10;
-            this.lblPrecio.Text = "label8";
+            this.lblPrecio.Text = "Precio";
             // 
             // lblCategoria
             // 
@@ -126,9 +126,9 @@
             this.lblCategoria.Location = new System.Drawing.Point(268, 209);
             this.lblCategoria.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblCategoria.Name = "lblCategoria";
-            this.lblCategoria.Size = new System.Drawing.Size(77, 27);
+            this.lblCategoria.Size = new System.Drawing.Size(115, 27);
             this.lblCategoria.TabIndex = 9;
-            this.lblCategoria.Text = "label9";
+            this.lblCategoria.Text = "Categoria";
             // 
             // lblMarca
             // 
@@ -137,9 +137,9 @@
             this.lblMarca.Location = new System.Drawing.Point(268, 157);
             this.lblMarca.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblMarca.Name = "lblMarca";
-            this.lblMarca.Size = new System.Drawing.Size(90, 27);
+            this.lblMarca.Size = new System.Drawing.Size(77, 27);
             this.lblMarca.TabIndex = 8;
-            this.lblMarca.Text = "label10";
+            this.lblMarca.Text = "Marca";
             // 
             // lblNombre
             // 
@@ -148,9 +148,9 @@
             this.lblNombre.Location = new System.Drawing.Point(268, 103);
             this.lblNombre.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(88, 27);
+            this.lblNombre.Size = new System.Drawing.Size(97, 27);
             this.lblNombre.TabIndex = 7;
-            this.lblNombre.Text = "label11";
+            this.lblNombre.Text = "Nombre";
             // 
             // lblCodigo
             // 
@@ -159,9 +159,9 @@
             this.lblCodigo.Location = new System.Drawing.Point(268, 55);
             this.lblCodigo.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblCodigo.Name = "lblCodigo";
-            this.lblCodigo.Size = new System.Drawing.Size(90, 27);
+            this.lblCodigo.Size = new System.Drawing.Size(88, 27);
             this.lblCodigo.TabIndex = 6;
-            this.lblCodigo.Text = "label12";
+            this.lblCodigo.Text = "Código";
             // 
             // picImagen
             // 
@@ -184,22 +184,26 @@
             // 
             // btnAnterior
             // 
+            this.btnAnterior.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnAnterior.ForeColor = System.Drawing.SystemColors.Control;
             this.btnAnterior.Location = new System.Drawing.Point(612, 302);
             this.btnAnterior.Name = "btnAnterior";
             this.btnAnterior.Size = new System.Drawing.Size(78, 38);
             this.btnAnterior.TabIndex = 13;
             this.btnAnterior.Text = "<";
-            this.btnAnterior.UseVisualStyleBackColor = true;
+            this.btnAnterior.UseVisualStyleBackColor = false;
             this.btnAnterior.Click += new System.EventHandler(this.btnAnterior_Click);
             // 
             // btnSiguiente
             // 
+            this.btnSiguiente.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnSiguiente.ForeColor = System.Drawing.SystemColors.Control;
             this.btnSiguiente.Location = new System.Drawing.Point(941, 302);
             this.btnSiguiente.Name = "btnSiguiente";
             this.btnSiguiente.Size = new System.Drawing.Size(75, 38);
             this.btnSiguiente.TabIndex = 14;
             this.btnSiguiente.Text = ">";
-            this.btnSiguiente.UseVisualStyleBackColor = true;
+            this.btnSiguiente.UseVisualStyleBackColor = false;
             this.btnSiguiente.Click += new System.EventHandler(this.btnSiguiente_Click);
             // 
             // lblContadorImagenes
@@ -207,9 +211,9 @@
             this.lblContadorImagenes.AutoSize = true;
             this.lblContadorImagenes.Location = new System.Drawing.Point(764, 311);
             this.lblContadorImagenes.Name = "lblContadorImagenes";
-            this.lblContadorImagenes.Size = new System.Drawing.Size(81, 29);
+            this.lblContadorImagenes.Size = new System.Drawing.Size(137, 29);
             this.lblContadorImagenes.TabIndex = 15;
-            this.lblContadorImagenes.Text = "label7";
+            this.lblContadorImagenes.Text = "Imagen 1/3";
             // 
             // btnCerrar
             // 
@@ -248,6 +252,7 @@
             this.Name = "FrmDetalleArticulo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Detalle de Artículo";
+            this.Load += new System.EventHandler(this.FrmDetalleArticulo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.picImagen)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
