@@ -93,6 +93,9 @@ namespace TPWinForm_equipo_B
 
         private void cbCampo_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (cbCampo.SelectedItem == null)
+                return;
+
             string opcion = cbCampo.SelectedItem.ToString();
             cbCriterio.Items.Clear();
 
