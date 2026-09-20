@@ -231,6 +231,12 @@ namespace TPWinForm_equipo_B
                 return;
             }
 
+            if (!Validaciones.TextoValido(txtPrecio.Text))
+            {
+                MessageBox.Show("El precio es obligatorio.");
+                return;
+            }
+
             decimal precio;
             if (!decimal.TryParse(txtPrecio.Text, out precio))
             {
