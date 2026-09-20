@@ -1,6 +1,6 @@
 ﻿namespace TPWinForm_equipo_B
 {
-    partial class FrmMarcas
+    partial class frmMarcasYCategorias
     {
         /// <summary>
         /// Required designer variable.
@@ -119,10 +119,10 @@
             this.Controls.Add(this.dgvMarcas);
             this.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "FrmMarcas";
+            this.Name = "FrmMarcasYCategorias";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Administrar Marcas";
-            this.Load += new System.EventHandler(this.FrmMarcas_Load);
+            this.Load += new System.EventHandler(this.frmMarcasYCategorias_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMarcas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

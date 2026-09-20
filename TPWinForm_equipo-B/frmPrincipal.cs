@@ -565,6 +565,34 @@ namespace TPWinForm_equipo_B
             tbFiltro.Text = "Filtro...";
             tbFiltro.ForeColor = Color.Gray;
         }
+
+        private void deMarcasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmMarcasYCategorias frmMarcas = new frmMarcasYCategorias(TipoAdministracion.Marcas);
+            frmMarcas.ShowDialog();
+        }
+
+        private void btnAgregarArticuloNuevo_Click(object sender, EventArgs e)
+        {
+            // Instanciar el formulario en blanco
+            FrmArticulo frmAlta = new FrmArticulo();
+
+            // Abrir el formulario bloqueando la ventana principal
+            frmAlta.ShowDialog();
+
+            // Recargar la grilla para reflejar el nuevo ingreso
+            ArticuloRepositorio repo = new ArticuloRepositorio();
+            dgvArticulos.DataSource = repo.Listar();
+
+            // Volver a ocultar las columnas de sistema
+            OcultarColumnas();
+        }
+
+        private void categoríasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmMarcasYCategorias frmCategorias = new frmMarcasYCategorias(TipoAdministracion.Categorias);
+            frmCategorias.ShowDialog();
+        }
     }
 
 }
