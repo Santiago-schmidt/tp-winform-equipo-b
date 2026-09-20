@@ -140,6 +140,7 @@ namespace TPWinForm_equipo_B
             this.cmbMarca.Name = "cmbMarca";
             this.cmbMarca.Size = new System.Drawing.Size(200, 21);
             this.cmbMarca.TabIndex = 9;
+            this.cmbMarca.SelectedIndexChanged += new System.EventHandler(this.cmbMarca_SelectedIndexChanged);
             //
             // lblCategoria
             //
@@ -160,6 +161,7 @@ namespace TPWinForm_equipo_B
             this.cmbCategoria.Name = "cmbCategoria";
             this.cmbCategoria.Size = new System.Drawing.Size(200, 21);
             this.cmbCategoria.TabIndex = 11;
+            this.cmbCategoria.SelectedIndexChanged += new System.EventHandler(this.cmbCategoria_SelectedIndexChanged);
             //
             // btnGuardar
             //
