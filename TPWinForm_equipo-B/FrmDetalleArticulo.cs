@@ -22,6 +22,7 @@ namespace TPWinForm_equipo_B
 
             CargarDatos();
             CargarImagenes();
+            btnCerrar.Focus();
         }
         private void CargarDatos()
         {
@@ -31,6 +32,7 @@ namespace TPWinForm_equipo_B
             lblCategoria.Text = articulo.Categoria?.Descripcion ?? "";
             lblPrecio.Text = articulo.Precio.ToString("C");
             txtDescripcion.Text = articulo.Descripcion ?? "";
+            btnSiguiente.Focus();
         }
         private void CargarImagenes()
         {

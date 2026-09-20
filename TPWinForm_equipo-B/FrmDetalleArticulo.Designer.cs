@@ -165,10 +165,10 @@
             // 
             // picImagen
             // 
-            this.picImagen.Location = new System.Drawing.Point(612, 30);
+            this.picImagen.Location = new System.Drawing.Point(612, 13);
             this.picImagen.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.picImagen.Name = "picImagen";
-            this.picImagen.Size = new System.Drawing.Size(348, 230);
+            this.picImagen.Size = new System.Drawing.Size(391, 272);
             this.picImagen.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picImagen.TabIndex = 11;
             this.picImagen.TabStop = false;
@@ -184,7 +184,7 @@
             // 
             // btnAnterior
             // 
-            this.btnAnterior.Location = new System.Drawing.Point(612, 267);
+            this.btnAnterior.Location = new System.Drawing.Point(612, 302);
             this.btnAnterior.Name = "btnAnterior";
             this.btnAnterior.Size = new System.Drawing.Size(78, 38);
             this.btnAnterior.TabIndex = 13;
@@ -194,7 +194,7 @@
             // 
             // btnSiguiente
             // 
-            this.btnSiguiente.Location = new System.Drawing.Point(885, 267);
+            this.btnSiguiente.Location = new System.Drawing.Point(941, 302);
             this.btnSiguiente.Name = "btnSiguiente";
             this.btnSiguiente.Size = new System.Drawing.Size(75, 38);
             this.btnSiguiente.TabIndex = 14;
@@ -205,7 +205,7 @@
             // lblContadorImagenes
             // 
             this.lblContadorImagenes.AutoSize = true;
-            this.lblContadorImagenes.Location = new System.Drawing.Point(712, 276);
+            this.lblContadorImagenes.Location = new System.Drawing.Point(764, 311);
             this.lblContadorImagenes.Name = "lblContadorImagenes";
             this.lblContadorImagenes.Size = new System.Drawing.Size(81, 29);
             this.lblContadorImagenes.TabIndex = 15;
