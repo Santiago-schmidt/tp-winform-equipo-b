@@ -39,8 +39,7 @@ namespace TPWinForm_equipo_B
 
         private void frmPrincipal_Load(object sender, EventArgs e)
         {
-            // Asignar imagen inicial de inicio desde los recursos
-            pbxArticulo.Image = Properties.Resources.Phoenix1;
+            
 
             // 1. Cargar los datos
             ArticuloRepositorio repo = new ArticuloRepositorio();
@@ -81,7 +80,8 @@ namespace TPWinForm_equipo_B
             modificadorCursorCriterio = new CursorFlecha(editCriterio);
 
             // Quitar el foco inicial a los ComboBox
-            this.ActiveControl = dgvArticulos;
+            this.ActiveControl = btnVerDetalle;
+            MostrarImagenInicial();
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -317,23 +317,28 @@ namespace TPWinForm_equipo_B
         {
             if (listaImagenesActual == null || listaImagenesActual.Count == 0)
             {
-                // Asignar la imagen de error desde los recursos
                 pbxArticulo.Image = Properties.Resources.Imagen_no_disponible;
                 lblImagen.Text = "Sin Imágenes";
-                btnAnterior.Enabled = false;
-                btnSiguiente.Enabled = false;
+                lblImagen.Visible = false;
+                btnAnterior.Visible = false;
+                btnSiguiente.Visible = false;
                 return;
             }
 
-            // Utilizar el sistema de caché en lugar de cargar directamente del PictureBox
             string urlActual = listaImagenesActual[indiceImagenActual].ImagenUrl;
             pbxArticulo.Image = ObtenerImagenOptimizada(urlActual);
 
-            lblImagen.Text = $"Imagen {indiceImagenActual + 1}/{listaImagenesActual.Count}";
+            // Mostrar los controles SOLO si hay más de una imagen
+            bool hayNavegacion = listaImagenesActual.Count > 1;
 
-            bool habilitarBotones = listaImagenesActual.Count > 1;
-            btnAnterior.Enabled = habilitarBotones;
-            btnSiguiente.Enabled = habilitarBotones;
+            lblImagen.Visible = hayNavegacion;
+            btnAnterior.Visible = hayNavegacion;
+            btnSiguiente.Visible = hayNavegacion;
+
+            if (hayNavegacion)
+            {
+                lblImagen.Text = $"Imagen {indiceImagenActual + 1}/{listaImagenesActual.Count}";
+            }
         }
 
         private void dgvArticulos_SelectionChanged(object sender, EventArgs e)
@@ -548,6 +553,16 @@ namespace TPWinForm_equipo_B
             }
         }
 
+        private void MostrarImagenInicial()
+        {
+            pbxArticulo.Image = Properties.Resources.Phoenix1;
+            lblImagen.Text = "";
+            lblImagen.Visible = false;
+            listaImagenesActual = null;
+            indiceImagenActual = 0;
+            btnAnterior.Visible = false;
+            btnSiguiente.Visible = false;
+        }
         private void btnRestablecer_Click(object sender, EventArgs e)
         {
             ArticuloRepositorio repo = new ArticuloRepositorio();
@@ -565,6 +580,8 @@ namespace TPWinForm_equipo_B
 
             tbFiltro.Text = "Filtro...";
             tbFiltro.ForeColor = Color.Gray;
+            this.ActiveControl = btnVerDetalle;
+            MostrarImagenInicial();
         }
 
         private void deMarcasToolStripMenuItem_Click(object sender, EventArgs e)
