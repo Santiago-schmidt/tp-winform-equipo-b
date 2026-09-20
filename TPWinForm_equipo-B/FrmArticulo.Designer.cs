@@ -51,6 +51,8 @@ namespace TPWinForm_equipo_B
             // lblCodigo
             //
             this.lblCodigo.AutoSize = true;
+            this.lblCodigo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.lblCodigo.ForeColor = System.Drawing.Color.Navy;
             this.lblCodigo.Location = new System.Drawing.Point(30, 30);
             this.lblCodigo.Name = "lblCodigo";
             this.lblCodigo.Size = new System.Drawing.Size(48, 13);
@@ -67,6 +69,8 @@ namespace TPWinForm_equipo_B
             // lblNombre
             //
             this.lblNombre.AutoSize = true;
+            this.lblNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.lblNombre.ForeColor = System.Drawing.Color.Navy;
             this.lblNombre.Location = new System.Drawing.Point(30, 70);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(50, 13);
@@ -83,6 +87,8 @@ namespace TPWinForm_equipo_B
             // lblDescripcion
             //
             this.lblDescripcion.AutoSize = true;
+            this.lblDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.lblDescripcion.ForeColor = System.Drawing.Color.Navy;
             this.lblDescripcion.Location = new System.Drawing.Point(30, 110);
             this.lblDescripcion.Name = "lblDescripcion";
             this.lblDescripcion.Size = new System.Drawing.Size(65, 13);
@@ -100,6 +106,8 @@ namespace TPWinForm_equipo_B
             // lblPrecio
             //
             this.lblPrecio.AutoSize = true;
+            this.lblPrecio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.lblPrecio.ForeColor = System.Drawing.Color.Navy;
             this.lblPrecio.Location = new System.Drawing.Point(30, 190);
             this.lblPrecio.Name = "lblPrecio";
             this.lblPrecio.Size = new System.Drawing.Size(40, 13);
@@ -116,6 +124,8 @@ namespace TPWinForm_equipo_B
             // lblMarca
             //
             this.lblMarca.AutoSize = true;
+            this.lblMarca.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.lblMarca.ForeColor = System.Drawing.Color.Navy;
             this.lblMarca.Location = new System.Drawing.Point(30, 230);
             this.lblMarca.Name = "lblMarca";
             this.lblMarca.Size = new System.Drawing.Size(40, 13);
@@ -134,6 +144,8 @@ namespace TPWinForm_equipo_B
             // lblCategoria
             //
             this.lblCategoria.AutoSize = true;
+            this.lblCategoria.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.lblCategoria.ForeColor = System.Drawing.Color.Navy;
             this.lblCategoria.Location = new System.Drawing.Point(30, 270);
             this.lblCategoria.Name = "lblCategoria";
             this.lblCategoria.Size = new System.Drawing.Size(58, 13);
@@ -151,27 +163,35 @@ namespace TPWinForm_equipo_B
             //
             // btnGuardar
             //
+            this.btnGuardar.BackColor = System.Drawing.Color.ForestGreen;
+            this.btnGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.btnGuardar.ForeColor = System.Drawing.Color.White;
             this.btnGuardar.Location = new System.Drawing.Point(140, 310);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(100, 30);
             this.btnGuardar.TabIndex = 12;
             this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.UseVisualStyleBackColor = false;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             //
             // btnCancelar
             //
+            this.btnCancelar.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.btnCancelar.ForeColor = System.Drawing.Color.Black;
             this.btnCancelar.Location = new System.Drawing.Point(250, 310);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(100, 30);
             this.btnCancelar.TabIndex = 15;
             this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             //
             // lblGaleria
             //
             this.lblGaleria.AutoSize = true;
+            this.lblGaleria.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold);
+            this.lblGaleria.ForeColor = System.Drawing.Color.Navy;
             this.lblGaleria.Location = new System.Drawing.Point(370, 30);
             this.lblGaleria.Name = "lblGaleria";
             this.lblGaleria.Size = new System.Drawing.Size(56, 13);
@@ -181,6 +201,7 @@ namespace TPWinForm_equipo_B
             // flpGaleria
             //
             this.flpGaleria.AutoScroll = true;
+            this.flpGaleria.BackColor = System.Drawing.Color.WhiteSmoke;
             this.flpGaleria.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.flpGaleria.Location = new System.Drawing.Point(370, 50);
             this.flpGaleria.Name = "flpGaleria";
@@ -196,18 +217,22 @@ namespace TPWinForm_equipo_B
             //
             // btnAgregarImagen
             //
+            this.btnAgregarImagen.BackColor = System.Drawing.Color.Goldenrod;
+            this.btnAgregarImagen.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
+            this.btnAgregarImagen.ForeColor = System.Drawing.Color.White;
             this.btnAgregarImagen.Location = new System.Drawing.Point(548, 346);
             this.btnAgregarImagen.Name = "btnAgregarImagen";
             this.btnAgregarImagen.Size = new System.Drawing.Size(82, 24);
             this.btnAgregarImagen.TabIndex = 17;
             this.btnAgregarImagen.Text = "Agregar";
-            this.btnAgregarImagen.UseVisualStyleBackColor = true;
+            this.btnAgregarImagen.UseVisualStyleBackColor = false;
             this.btnAgregarImagen.Click += new System.EventHandler(this.btnAgregarImagen_Click);
             //
             // FrmArticulo
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(660, 390);
             this.Controls.Add(this.btnAgregarImagen);
             this.Controls.Add(this.txtImagenUrl);
