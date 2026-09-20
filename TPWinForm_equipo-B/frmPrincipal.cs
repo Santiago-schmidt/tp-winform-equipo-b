@@ -618,6 +618,23 @@ namespace TPWinForm_equipo_B
             dgvArticulos.CurrentCell = null;
             dgvArticulos.ClearSelection();
         }
+
+        private void dgvArticulos_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Validar que se haya hecho doble clic en una fila válida y no en un encabezado
+            if (e.RowIndex >= 0)
+            {
+                // Obtener el artículo seleccionado de la fila donde se hizo doble clic
+                Articulo seleccionado = (Articulo)dgvArticulos.Rows[e.RowIndex].DataBoundItem;
+
+                // Instanciar y abrir el formulario de detalle de manera modal
+                FrmDetalleArticulo frmDetalle = new FrmDetalleArticulo(seleccionado);
+                frmDetalle.ShowDialog();
+            }
+        }
+      
+
+       
     }
 
 }
